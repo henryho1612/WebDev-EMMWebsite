@@ -1,0 +1,23 @@
+﻿.addOptionLabel {
+    text-align:left;
+}
+
+#addPanel {
+    margin-left:30px;
+}
+
+#listPanel {
+    width:90%;
+    height: 381px;
+    margin: auto;
+}
+
+#searchPanel {
+    margin-left:30px;
+}
+
+.listGridView {
+    width:100%;
+    height:auto;
+    text-align:center;
+}

@@ -1,0 +1,139 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ERM.master.cs" Inherits="COSC2450_A2_s3357671.ERM" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    
+    <link rel="stylesheet" href="/StyleSheet/MainPage.css" />
+    <link rel="Shortcut Icon" href="/Images/browserIcon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/StyleSheet/Index.css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(window).load(function () {
+
+            $("#nav > li > a").click(function () { // binding onclick
+                if ($(this).parent().hasClass('selected')) {
+                    $("#nav .selected div div").slideUp(100); // hiding popups
+                    $("#nav .selected").removeClass("selected");
+                } else {
+                    $("#nav .selected div div").slideUp(100); // hiding popups
+                    $("#nav .selected").removeClass("selected");
+
+                    if ($(this).next(".subs").length) {
+                        $(this).parent().addClass("selected"); // display popup
+                        $(this).next(".subs").children().slideDown(200);
+                    }
+                }
+            });
+
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="BodyForm" runat="server">
+        <div id="wrapBorder">
+        <div id="header">
+            <h1 id="pageTitle">Electronic Medical Record<br />System</h1>
+        </div>
+
+        <div class="menu">
+            <span>
+                <ul id="nav">
+                    <li><a href="index.aspx">Home</a></li>
+                    <li><a href="#">Hospital</a>
+                        <div class="subs">
+                            <div>
+                                <ul>
+                                    <li><h3>Hospital Manager</h3>
+                                        <ul>
+                                            <li><a href="hospital.aspx">Hospital</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><h3>Service Manager</h3>
+                                        <ul>
+                                            <li><a href="medicalService.aspx">Medical Service</a></li>
+                                            <li><a href="medicalServiceGroup.aspx">Medical Service Group</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="doctor.aspx">Doctor</a></li>
+                    <li><a href="patient.aspx">Patient</a></li>
+                    <li><a href="visit.aspx">Visit</a></li>
+                    <li><a href="#">ICD</a>
+                        <div class="subs">
+                            <div>
+                                <ul>
+                                    <li><h3>Details</h3>
+                                        <ul>
+                                            <li><a href="icd.aspx">ICD</a></li>
+                                            <li><a href="icdChapter.aspx">ICD Chapter</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Prescription</a>
+                        <div class="subs">
+                            <div>
+                                <ul>
+                                    <li><h3>Details</h3>
+                                        <ul>
+                                            <li><a href="prescription.aspx">Prescription</a></li>
+                                            <li><a href="prescriptionDetail.aspx">Prescription Detail</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Lab Order</a>
+                        <div class="subs">
+                            <div>
+                                <ul>
+                                    <li><h3>Details</h3>
+                                        <ul>
+                                            <li><a href="labOrder.aspx">Lab Order</a></li>
+                                            <li><a href="labOrderDetail.aspx">Lab Order Detail</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Drug</a>
+                        <div class="subs">
+                            <div>
+                                <ul>
+                                    <li><h3>Details</h3>
+                                        <ul>
+                                            <li><a href="drug.aspx">Drug</a></li>
+                                            <li><a href="drugGroup.aspx">Drug Group</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </span>
+        </div>
+
+        <div id="bodyPart">
+            <asp:ContentPlaceHolder ID="BodyContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <div id="footer">
+            <h1>ERM - Write latter</h1>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

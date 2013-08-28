@@ -1,0 +1,21 @@
+﻿#statsTable {
+    border-color:azure;
+    border:double;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px; 
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+    margin-left: 30px;
+}
+
+.firstStatsTableRow {
+    font-size:x-large; 
+    color:white; 
+    background-color:lightskyblue;
+}
+
+tr {
+    border-color:white;
+    border-right:thick;
+    padding-right: 20px;
+}
