@@ -65,7 +65,7 @@
     <h2 id="searchTitle" class="bodyTitle">Search A Medical Service Group</h2>
     <%--Search Medical Service Group Panel--%>
     <div id="searchPanel">
-        Chua Lam
+        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
     </div>
     <h2 id="msGroupTitle" class="bodyTitle">List of Medical Service Groups</h2>
     <%--List All Medical Service Groups--%>
@@ -127,7 +127,10 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:LinqDataSource ID="MSGroupDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServiceGroups">
+                <asp:LinqDataSource ID="MSGroupDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServiceGroups" Where="medicalServiceGroupName.Contains(@medicalServiceGroupName)">
+                    <WhereParameters>
+                        <asp:ControlParameter ControlID="SearchTextBox" Name="medicalServiceGroupName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false"/>
+                    </WhereParameters>
                 </asp:LinqDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>
