@@ -6,6 +6,10 @@
 <head runat="server">
     <title></title>
     
+    <%--<link rel="stylesheet" href="~/bootstrap/css/bootstrap.css"  type="text/css"/>--%>
+    <%--<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>--%>
+    <%--<script src="~/boostrap/js/bootstrap.js"></script>--%>
+
     <link rel="stylesheet" href="/StyleSheet/MainPage.css" />
     <link rel="Shortcut Icon" href="/Images/browserIcon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/StyleSheet/Index.css" />

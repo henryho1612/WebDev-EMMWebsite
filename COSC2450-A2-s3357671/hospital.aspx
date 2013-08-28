@@ -17,8 +17,12 @@
         $(document).ready(function () {
             $("#addPanel").fadeOut();
             $("#searchPanel").fadeOut();
+            $("#listPanel").fadeOut();
             $("#addTitle").click(function () {
                 $("#addPanel").slideToggle("slow");
+            });
+            $("#doctorTitle").click(function () {
+                $("#listPanel").slideToggle("slow");
             });
             $("#searchTitle").click(function () {
                 $("#searchPanel").slideToggle("slow");
@@ -97,6 +101,7 @@
                             <ItemTemplate>
                                 <asp:LinkButton ID="EditBtn" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
                             </ItemTemplate>
+                            <ItemStyle Width="20px" />
                         </asp:TemplateField>
                         <asp:TemplateField ShowHeader="False" ItemStyle-Width="20px">
                             <EditItemTemplate>
@@ -105,8 +110,14 @@
                             <ItemTemplate>
                                 <asp:LinkButton ID="DeleteBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
                             </ItemTemplate>
+                            <ItemStyle Width="20px" />
                         </asp:TemplateField>
-                        <asp:HyperLinkField DataNavigateUrlFields="hospitalId" DataNavigateUrlFormatString="viewHospital.aspx?ID={0}" Text="View" ItemStyle-Width="20px"/>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:HyperLink ID="viewBtn" runat="server" NavigateUrl='<%# Eval("hospitalId", "viewHospital.aspx?ID={0}") %>' Text="View"></asp:HyperLink>
+                            </ItemTemplate>
+                            <ItemStyle Width="20px" />
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
