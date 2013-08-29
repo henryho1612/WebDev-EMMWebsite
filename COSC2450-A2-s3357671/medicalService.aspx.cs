@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -128,7 +129,44 @@ namespace COSC2450_A2_s3357671
         {
             if (IsValid)
             {
+                var editedRowIndex = MedicalServiceList.EditIndex;
+                var lblId = MedicalServiceList.Rows[editedRowIndex].FindControl("EditId") as Label;
+                var txtbGroupId = MedicalServiceList.Rows[editedRowIndex].FindControl("EditGroupId") as TextBox;
+                var txtbName = MedicalServiceList.Rows[editedRowIndex].FindControl("EditName") as TextBox;
+                var txtbPrice = MedicalServiceList.Rows[editedRowIndex].FindControl("editPrice") as TextBox;
 
+                var id = long.Parse(lblId.Text);
+                var groupdId = GetGroupId(txtbGroupId.Text)[0];
+                var name = txtbName.Text;
+                var price = decimal.Parse(txtbPrice.Text);
+
+                var medicalService = new MedicalService() { medicalServiceId = id, medicalServiceGroupId = groupdId, medicalServiceName = name, price = price };
+                _dataContext.MedicalServices.Attach(medicalService);
+                _dataContext.Refresh(RefreshMode.KeepCurrentValues, medicalService);
+                _dataContext.SubmitChanges();
+                MedicalServiceList.EditIndex = -1;
+                //Use For Debug passed value
+                //Debug.WriteLine("id: " + id);
+                //Debug.WriteLine("groupId: " + groupdId);
+                //Debug.WriteLine("Name: " + name);
+                //Debug.WriteLine("price: " + price);
+            }
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = e.RowIndex;
+            Label lblId = GridView1.Rows[index].FindControl("Viewid") as Label;
+            var intId = long.Parse(lblId.Text);
+            var elements = from element in _dataContext.LabOrderDetails
+                           where element.medicalServiceId == intId
+                           select element;
+
+            if (elements.Count() != 0)
+            {
+                _dataContext.LabOrderDetails.DeleteAllOnSubmit(elements);
+                _dataContext.SubmitChanges();
+                return;
             }
         }
     }

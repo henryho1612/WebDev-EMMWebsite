@@ -59,5 +59,21 @@ namespace COSC2450_A2_s3357671
                           select n.medicalServiceGroupName.ToString());
             return result.ToArray();
         }
+
+        protected void MSGroupList_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            var index = e.RowIndex;
+            Label lblId = MSGroupList.Rows[index].FindControl("ViewId") as Label;
+            var longId = long.Parse(lblId.Text);
+            var elements = from element in _dataContext.MedicalServices
+                           where element.medicalServiceGroupId == longId
+                           select element;
+            if (elements.Count() != 0)
+            {
+                _dataContext.MedicalServices.DeleteAllOnSubmit(elements);
+                _dataContext.SubmitChanges();
+                return;
+            }
+        }
     }
 }

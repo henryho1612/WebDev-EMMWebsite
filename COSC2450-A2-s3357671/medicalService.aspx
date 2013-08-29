@@ -18,7 +18,6 @@
         $(document).ready(function () {
             $("#addPanel").hide();
             $("#searchPanel").hide();
-            //$("#msgListPanel").hide();
 
             $("#addTitle").click(function () {
                 $("#addPanel").slideToggle("slow");
@@ -62,9 +61,10 @@
                         </th>
                         <td>
                             <asp:TextBox runat="server" ID="GroupNameTextBox" /><span class="requiredField">*</span>
-                            <asp:RequiredFieldValidator runat="server" ID="AddressRequiredFieldValidator" ValidationGroup="insert" ErrorMessage="Input should not be empty!!" ControlToValidate="GroupNameTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator runat="server" ID="AddressRequiredFieldValidator" ValidationGroup="insert" ErrorMessage="Input should not be empty!!" ControlToValidate="GroupNameTextBox" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:AutoCompleteExtender runat="server" ID="GroupNameAutoCompleteExtender" TargetControlID="GroupNameTextBox" ServiceMethod="GetGroupNameList" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
-                            <asp:CustomValidator runat="server" ID="InsertExistenceCustomValidator" ValidationGroup="insert" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="GroupNameTextBox" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate"></asp:CustomValidator>
+                            <asp:CustomValidator runat="server" ID="InsertExistenceCustomValidator" ValidationGroup="insert" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="GroupNameTextBox" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate" Display="Dynamic"></asp:CustomValidator>
+                            <asp:RegularExpressionValidator runat="server" ID="GroupIdRegularExpressionValidator" ValidationGroup="insert" ErrorMessage="Invalid Type! Should only contain letters and format (Bla Bla)" ControlToValidate="GroupNameTextBox" ForeColor="Red" ValidationExpression="(\D{3,}\s\D{3,})+" Display="Dynamic"></asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr class="addOptionLabel">
@@ -101,7 +101,7 @@
         <div id="msgListPanel">
             <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None">
+                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView1_RowDeleting">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:BoundField DataField="medicalServiceGroupId" HeaderText="medicalServiceGroupId" ReadOnly="True" SortExpression="medicalServiceGroupId" />
@@ -156,9 +156,10 @@
                         <asp:TemplateField HeaderText="Group Id" SortExpression="medicalServiceGroupId">
                             <EditItemTemplate>
                                 <asp:TextBox ID="EditGroupId" runat="server" Text='<%# Bind("MedicalServiceGroup.medicalServiceGroupName") %>'></asp:TextBox>
-                               <%-- <asp:RequiredFieldValidator runat="server" ID="GroupIdRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty" ControlToValidate="EditGroupId" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator runat="server" ID="GroupIdRegularExpressionValidator" ValidationGroup="update" ErrorMessage="Invalid Type! Should be a number" ControlToValidate="EditGroupId" ForeColor="Red" ValidationExpression="\d{1,19}" Display="Dynamic"></asp:RegularExpressionValidator>
-                               --%> <%--<asp:CustomValidator runat="server" ID="UpdateExistenceCustomValidator" ValidationGroup="update" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="EditGroupId" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate"></asp:CustomValidator>--%>
+                                <asp:RequiredFieldValidator runat="server" ID="GroupNameRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty" ControlToValidate="EditGroupId" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <asp:AutoCompleteExtender runat="server" ID="GroupNameAutoCompleteExtender" TargetControlID="EditGroupId" ServiceMethod="GetGroupNameList" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
+                                <asp:RegularExpressionValidator runat="server" ID="GroupIdRegularExpressionValidator" ValidationGroup="update" ErrorMessage="Invalid Type! Should only contain letters and format (Bla Bla)" ControlToValidate="EditGroupId" ForeColor="Red" ValidationExpression="(\D{3,}\s\D{3,})+" Display="Dynamic"></asp:RegularExpressionValidator>
+                                <asp:CustomValidator runat="server" ID="UpdateExistenceCustomValidator" ValidationGroup="update" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="EditGroupId" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate" Display="Dynamic"></asp:CustomValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="ViewGroupId" runat="server" Text='<%# Bind("MedicalServiceGroup.medicalServiceGroupName") %>'></asp:Label>

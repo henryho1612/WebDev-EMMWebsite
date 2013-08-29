@@ -85,7 +85,7 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="MSGroupList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="medicalServiceGroupId" DataSourceID="MSGroupDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView">
+                <asp:GridView ID="MSGroupList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="medicalServiceGroupId" DataSourceID="MSGroupDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView" OnRowDeleting="MSGroupList_RowDeleting">
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>
