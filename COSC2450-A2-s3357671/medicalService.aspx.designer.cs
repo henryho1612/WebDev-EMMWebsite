@@ -85,15 +85,6 @@ namespace COSC2450_A2_s3357671 {
         protected global::AjaxControlToolkit.AutoCompleteExtender GroupNameAutoCompleteExtender;
         
         /// <summary>
-        /// GroupIdRegularExpressionValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator GroupIdRegularExpressionValidator;
-        
-        /// <summary>
         /// InsertExistenceCustomValidator control.
         /// </summary>
         /// <remarks>
@@ -157,6 +148,33 @@ namespace COSC2450_A2_s3357671 {
         protected global::System.Web.UI.WebControls.Button ResetMSButton;
         
         /// <summary>
+        /// SearchTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
+        
+        /// <summary>
+        /// SearchBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchBtn;
+        
+        /// <summary>
+        /// MSAutoCompleteExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender MSAutoCompleteExtender;
+        
+        /// <summary>
         /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>
@@ -166,22 +184,22 @@ namespace COSC2450_A2_s3357671 {
         protected global::System.Web.UI.UpdatePanel UpdatePanel3;
         
         /// <summary>
-        /// MedicalServiceGroupList control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView MedicalServiceGroupList;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// MSGDataSource1 control.
+        /// LinqDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource MSGDataSource1;
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqDataSource1;
         
         /// <summary>
         /// updateProgress control.

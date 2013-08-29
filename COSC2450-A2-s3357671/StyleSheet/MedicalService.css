@@ -6,12 +6,6 @@
     margin-left:30px;
 }
 
-#msgListPanel {
-    width:90%;
-    height: 190px;
-    margin: auto;
-}
-
 #listPanel {
     width:90%;
     height: 381px;
@@ -19,7 +13,21 @@
 }
 
 #searchPanel {
-    margin-left:30px;
+    width:100%;
+    height:350px;
+}
+
+#searchBox {
+    width:45%;
+    padding-left:30px;
+    height:inherit;
+    float:left;
+}
+
+#msgListPanel {
+    width:45%;
+    height:inherit;
+    float:right;
 }
 
 .listGridView {
