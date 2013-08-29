@@ -28,15 +28,10 @@
                 $("#searchPanel").slideToggle("slow");
             });
         });
-
-        function showListPanel()
-        {
-            
-        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
-    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePageMethods="true"></asp:ToolkitScriptManager>
 
     <h2 id="addTitle" class="bodyTitle">Add A Hospital</h2>
     <%--Add Hospital Panel--%>
@@ -94,7 +89,8 @@
     <h2 id="searchTitle" class="bodyTitle">Search A Hospital</h2>
     <%--Search Hospital Panel--%>
     <div id="searchPanel">
-        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search"/>
+        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" placeholder="Search"/>
+        <asp:AutoCompleteExtender runat="server" ID="HospitalAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetHospital" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching ="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
     </div>
     <h2 id="doctorTitle" class="bodyTitle">List of Hospital</h2>
     <%--List All Hospitals--%>

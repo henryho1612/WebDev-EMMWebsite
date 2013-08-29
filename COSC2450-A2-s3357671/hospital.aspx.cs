@@ -49,5 +49,23 @@ namespace COSC2450_A2_s3357671
             AddressTextBox.Text = "";
             LicenseTextBox.Text = "";
         }
+
+        //Assisted By s3357679
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static string[] GetHospital(string prefixText)
+        {
+            List<string> result = new List<string>();
+            var dataContext = new DBDataContext();
+
+            foreach (var hospital in dataContext.Hospitals)
+            {
+                if (hospital.hospitalName.ToString().StartsWith(prefixText))
+                {
+                    result.Add(hospital.hospitalName.ToString());
+                }
+            }
+            return result.ToArray();
+        }
     }
 }
