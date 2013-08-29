@@ -23,6 +23,9 @@
             $("#searchTitle").click(function () {
                 $("#searchPanel").slideToggle("slow");
             });
+            $("#msGroupTitle").click(function () {
+                $("#listPanel").slideToggle("slow");
+            });
         });
     </script>
 </asp:Content>
@@ -66,6 +69,7 @@
     <%--Search Medical Service Group Panel--%>
     <div id="searchPanel">
         <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+        <asp:AutoCompleteExtender runat="server" ID="MSGroupAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetMedicalServiceGroup" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
     </div>
     <h2 id="msGroupTitle" class="bodyTitle">List of Medical Service Groups</h2>
     <%--List All Medical Service Groups--%>

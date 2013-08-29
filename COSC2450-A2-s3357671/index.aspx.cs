@@ -21,7 +21,7 @@ namespace COSC2450_A2_s3357671
         private void SetLblValue()
         {
             LblUserData.Text = CollectStatistic("User").ToString();
-            LblHospitalData.Text = CollectStatistic("Hospital").ToString();
+            LblHospitalData.Text = CollectStatistic("Hopital").ToString();
             LblDoctorData.Text = CollectStatistic("Doctor").ToString();
             LblPatientData.Text = CollectStatistic("Patient").ToString();
             LblVisitData.Text = CollectStatistic("Visit").ToString();

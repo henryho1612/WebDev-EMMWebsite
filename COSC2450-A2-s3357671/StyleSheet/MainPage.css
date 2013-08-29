@@ -5,8 +5,8 @@
     margin: auto;
 }
 
-#hearder {
-    background-image: url(../Images/medical-banner.jpg);
+#header {
+    background-image: url('../Images/hospital-background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;

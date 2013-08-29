@@ -72,6 +72,9 @@
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="hospital.aspx" />
     <Content Include="icdChapter.aspx" />
+    <Content Include="Images\browserIcon.ico" />
+    <Content Include="Images\hospital-background.jpg" />
+    <Content Include="Images\loader.gif" />
     <Content Include="index.aspx" />
     <Content Include="medicalService.aspx" />
     <Content Include="medicalServiceGroup.aspx" />

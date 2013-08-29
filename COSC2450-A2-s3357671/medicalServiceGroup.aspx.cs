@@ -46,5 +46,18 @@ namespace COSC2450_A2_s3357671
         {
             NameTextBox.Text = "";
         }
+
+        //Assisted By s3357678
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static string[] GetMedicalServiceGroup(string prefixText)
+        {
+            var dataContext = new DBDataContext();
+
+            var result = (from n in dataContext.MedicalServiceGroups
+                          where n.medicalServiceGroupName.ToString().ToLower().StartsWith(prefixText.ToLower())
+                          select n.medicalServiceGroupName.ToString());
+            return result.ToArray();
+        }
     }
 }

@@ -27,27 +27,33 @@
         </asp:UpdateProgress>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:FormView ID="FormView1" runat="server" DataKeyNames="medicalServiceGroupId" DataSourceID="LinqDataSource1">
+                <asp:FormView ID="FormView1" runat="server" DataKeyNames="medicalServiceGroupId" DataSourceID="LinqDataSource1" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" OnItemDeleted="FormView1_ItemDeleted" OnItemDeleting="FormView1_ItemDeleting" OnItemUpdated="FormView1_ItemUpdated">
                     <EditItemTemplate>
                         ID:
                         <asp:Label ID="EditId" runat="server" Text='<%# Eval("medicalServiceGroupId") %>' />
                         <br />
                         Group Name:
                         <asp:TextBox ID="EditName" runat="server" Text='<%# Bind("medicalServiceGroupName") %>' />
+                        <asp:RequiredFieldValidator runat="server" ID="EditNameRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditName" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
-                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                        &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                        <asp:LinkButton ID="UpdateBtn" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="update" OnClick="Button_Click" />
+                        <asp:LinkButton ID="CancelBtn" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                     </EditItemTemplate>
+                    <EditRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
+                    <FooterStyle BackColor="White" ForeColor="#333333" />
+                    <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" />
                   <ItemTemplate>
                         ID:
-                        <asp:Label ID="EditId" runat="server" Text='<%# Eval("medicalServiceGroupId") %>' />
+                        <asp:Label ID="ViewId" runat="server" Text='<%# Eval("medicalServiceGroupId") %>' />
                         <br />
                         Group Name:
-                        <asp:Label ID="EditName" runat="server" Text='<%# Bind("medicalServiceGroupName") %>' />
+                        <asp:Label ID="ViewName" runat="server" Text='<%# Bind("medicalServiceGroupName") %>' />
                         <br />
-                        <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                        &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                        <asp:LinkButton ID="EditBtn" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
+                        <asp:LinkButton ID="DeleteBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');" />
                     </ItemTemplate>
+                    <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="White" ForeColor="#333333" />
                 </asp:FormView>
                 <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServiceGroups" Where="medicalServiceGroupId == @medicalServiceGroupId">
                     <WhereParameters>

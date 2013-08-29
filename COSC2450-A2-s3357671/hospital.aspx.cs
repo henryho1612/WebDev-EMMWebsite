@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -21,7 +22,8 @@ namespace COSC2450_A2_s3357671
             Button btn = (Button)sender;
             String btnId = btn.ID;
 
-            if (btnId.Equals("AddHospitalButton")) {
+            if (btnId.Equals("AddHospitalButton"))
+            {
                 if (IsValid)
                 {
                     System.Threading.Thread.Sleep(3000);
@@ -50,22 +52,40 @@ namespace COSC2450_A2_s3357671
             LicenseTextBox.Text = "";
         }
 
-        //Assisted By s3357679
+        //Assisted By s3357678
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
         public static string[] GetHospital(string prefixText)
         {
-            List<string> result = new List<string>();
             var dataContext = new DBDataContext();
 
-            foreach (var hospital in dataContext.Hospitals)
-            {
-                if (hospital.hospitalName.ToString().StartsWith(prefixText))
-                {
-                    result.Add(hospital.hospitalName.ToString());
-                }
-            }
+            var result = (from n in dataContext.Hospitals
+                          where n.hospitalName.ToString().ToLower().StartsWith(prefixText.ToLower())
+                          select n.hospitalName.ToString())
+                                 .Union(from n in dataContext.Hospitals
+                                        where n.license.ToString().ToLower().StartsWith(prefixText.ToLower())
+                                        select n.license.ToString())
+                                        .Union(from n in dataContext.Hospitals
+                                               where n.address.ToString().ToLower().StartsWith(prefixText.ToLower())
+                                               select n.address.ToString());
             return result.ToArray();
+        }
+
+        protected void HospitalList_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = e.RowIndex;
+            Label lblId = HospitalList.Rows[index].FindControl("ViewId") as Label;
+            var intId = long.Parse(lblId.Text);
+            var elements = from element in _dataContext.Visits
+                           where element.hospitalId == intId
+                           select element;
+
+            if (elements.Count() != 0)
+            {
+                _dataContext.Visits.DeleteAllOnSubmit(elements);
+                _dataContext.SubmitChanges();
+                return;
+            }
         }
     }
 }
