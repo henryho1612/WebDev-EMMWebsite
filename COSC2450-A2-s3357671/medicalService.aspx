@@ -18,12 +18,14 @@
         $(document).ready(function () {
             $("#addPanel").hide();
             $("#searchPanel").hide();
-
             $("#addTitle").click(function () {
                 $("#addPanel").slideToggle("slow");
             });
             $("#searchTitle").click(function () {
                 $("#searchPanel").slideToggle("slow");
+            });
+            $("#medicalServiceTitle").click(function () {
+                $("#listPanel").slideToggle("slow");
             });
         });
     </script>
@@ -64,7 +66,6 @@
                             <asp:RequiredFieldValidator runat="server" ID="AddressRequiredFieldValidator" ValidationGroup="insert" ErrorMessage="Input should not be empty!!" ControlToValidate="GroupNameTextBox" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:AutoCompleteExtender runat="server" ID="GroupNameAutoCompleteExtender" TargetControlID="GroupNameTextBox" ServiceMethod="GetGroupNameList" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
                             <asp:CustomValidator runat="server" ID="InsertExistenceCustomValidator" ValidationGroup="insert" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="GroupNameTextBox" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate" Display="Dynamic"></asp:CustomValidator>
-                            <asp:RegularExpressionValidator runat="server" ID="GroupIdRegularExpressionValidator" ValidationGroup="insert" ErrorMessage="Invalid Type! Should only contain letters and format (Bla Bla)" ControlToValidate="GroupNameTextBox" ForeColor="Red" ValidationExpression="(\D{3,}\s\D{3,})+" Display="Dynamic"></asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr class="addOptionLabel">
@@ -75,7 +76,7 @@
                             <asp:TextBox runat="server" ID="PriceTextBox" ToolTip="0.00 -> 1000000.00" /><span class="requiredField">*</span>
                             <asp:RequiredFieldValidator runat="server" ID="PriceRequiredFieldValidator" ValidationGroup="insert" ErrorMessage="Input should not be empty!!" ControlToValidate="PriceTextBox" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator runat="server" ID="PriceRegularExpressionValidator" ValidationGroup="insert" ErrorMessage="Invalid Type! Should be a number" ControlToValidate="PriceTextBox" ForeColor="Red" ValidationExpression="\d{0,18}\.\d{2}" Display="Dynamic"></asp:RegularExpressionValidator>
-                            <asp:RangeValidator runat="server" ID="PriceRangeValidator" ValidationGroup="insert" ErrorMessage="Invalid Range!" ControlToValidate="PriceTextBox" ForeColor="Red" MinimumValue="0" MaximumValue="1000000" Type="Double" Display="Dynamic"></asp:RangeValidator>
+                            <asp:RangeValidator runat="server" ID="PriceRangeValidator" ValidationGroup="insert" ErrorMessage="Invalid Range!" ControlToValidate="PriceTextBox" ForeColor="Red" MinimumValue="0.00" MaximumValue="1000000.00" Type="Currency" Display="Dynamic"></asp:RangeValidator>
                         </td>
                     </tr>
                     <tr class="addOptionLabel">
@@ -94,18 +95,18 @@
     <%--Search Medical Service Panel--%>
     <div id="searchPanel">
         <div id="searchBox">
-            <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+            <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="580px"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
             <asp:AutoCompleteExtender runat="server" ID="MSAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetMedicalService" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
         </div>
 
         <div id="msgListPanel">
             <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView1_RowDeleting">
+                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView1_RowDeleting" Width="100%">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
-                            <asp:BoundField DataField="medicalServiceGroupId" HeaderText="medicalServiceGroupId" ReadOnly="True" SortExpression="medicalServiceGroupId" />
-                            <asp:BoundField DataField="medicalServiceGroupName" HeaderText="medicalServiceGroupName" ReadOnly="True" SortExpression="medicalServiceGroupName" />
+                            <asp:BoundField DataField="medicalServiceGroupId" HeaderText="Service Group Id" ReadOnly="True" SortExpression="medicalServiceGroupId" ItemStyle-Width="30%" />
+                            <asp:BoundField DataField="medicalServiceGroupName" HeaderText="Service Group Name" ReadOnly="True" SortExpression="medicalServiceGroupName" ItemStyle-Width="70%" />
                         </Columns>
                         <EditRowStyle BackColor="#999999" />
                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -138,7 +139,7 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="MedicalServiceList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="medicalServiceId" DataSourceID="MedicalServiceDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView">
+                <asp:GridView ID="MedicalServiceList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="medicalServiceId" DataSourceID="MedicalServiceDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView" OnRowDeleting="GridView1_RowDeleting">
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>
@@ -158,7 +159,6 @@
                                 <asp:TextBox ID="EditGroupId" runat="server" Text='<%# Bind("MedicalServiceGroup.medicalServiceGroupName") %>'></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="GroupNameRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty" ControlToValidate="EditGroupId" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:AutoCompleteExtender runat="server" ID="GroupNameAutoCompleteExtender" TargetControlID="EditGroupId" ServiceMethod="GetGroupNameList" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
-                                <asp:RegularExpressionValidator runat="server" ID="GroupIdRegularExpressionValidator" ValidationGroup="update" ErrorMessage="Invalid Type! Should only contain letters and format (Bla Bla)" ControlToValidate="EditGroupId" ForeColor="Red" ValidationExpression="(\D{3,}\s\D{3,})+" Display="Dynamic"></asp:RegularExpressionValidator>
                                 <asp:CustomValidator runat="server" ID="UpdateExistenceCustomValidator" ValidationGroup="update" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="EditGroupId" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate" Display="Dynamic"></asp:CustomValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
@@ -179,21 +179,34 @@
                                 <asp:TextBox ID="EditPrice" runat="server" Text='<%# Bind("price") %>'></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="PriceRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditPrice" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator runat="server" ID="PriceRegularExpressionValidator" ValidationGroup="update" ErrorMessage="Invalid Type! Should be a number" ControlToValidate="EditPrice" ForeColor="Red" ValidationExpression="\d{0,18}\.\d{2}" Display="Dynamic"></asp:RegularExpressionValidator>
-                                <asp:RangeValidator runat="server" ID="PriceRangeValidator" ValidationGroup="update" ErrorMessage="Invalid Range!" ControlToValidate="EditPrice" ForeColor="Red" MinimumValue="0.00" MaximumValue="1000000.00" Display="Dynamic"></asp:RangeValidator>
+                                <asp:RangeValidator runat="server" ID="PriceRangeValidator" ValidationGroup="update" ErrorMessage="Invalid Range!" ControlToValidate="EditPrice" ForeColor="Red" MinimumValue="0.00" MaximumValue="1000000.00" Type="Currency" Display="Dynamic"></asp:RangeValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="ViewPrice" runat="server" Text='<%# Bind("price") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="False">
+                        <asp:TemplateField ShowHeader="false" ItemStyle-Width="20px">
                             <EditItemTemplate>
                                 <asp:LinkButton ID="UpdateBtn" runat="server" CausesValidation="True" Text="Update" ValidationGroup="update" OnClick="UpdateButton_Click"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="CancelBtn" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:LinkButton ID="EditBtn" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="DeleteBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
                             </ItemTemplate>
+                            <ItemStyle Width="20px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField ShowHeader="false" ItemStyle-Width="20px">
+                            <EditItemTemplate>
+                                <asp:LinkButton ID="CancelBtn" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:HyperLink ID="ViewBtn" runat="server" NavigateUrl='<%# Eval("medicalServiceId", "viewMedicalService.aspx?ID={0}") %>' Text="View"></asp:HyperLink>
+                            </ItemTemplate>
+                            <ItemStyle Width="20px" />
                         </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
@@ -207,7 +220,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:LinqDataSource ID="MedicalServiceDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServices">
+                <asp:LinqDataSource ID="MedicalServiceDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServices" Where="medicalServiceName.Contains(@medicalServiceName)">
                     <WhereParameters>
                         <asp:ControlParameter ControlID="SearchTextBox" Name="medicalServiceName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false" />
                     </WhereParameters>
