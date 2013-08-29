@@ -11,12 +11,6 @@
             System.Threading.Thread.Sleep(3000);
         }
     </script>
-    <%--Normal Javascript--%>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <h2 id="hospitalDetailTitle" class="bodyTitle">Hospital Detail</h2>

@@ -18,7 +18,6 @@
         $(document).ready(function () {
             $("#addPanel").hide();
             $("#searchPanel").hide();
-            $("#listPanel").hide();
             $("#addTitle").click(function () {
                 $("#addPanel").slideToggle("slow");
             });
@@ -29,6 +28,11 @@
                 $("#searchPanel").slideToggle("slow");
             });
         });
+
+        function showListPanel()
+        {
+            
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
@@ -90,7 +94,7 @@
     <h2 id="searchTitle" class="bodyTitle">Search A Hospital</h2>
     <%--Search Hospital Panel--%>
     <div id="searchPanel">
-        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search"/>
     </div>
     <h2 id="doctorTitle" class="bodyTitle">List of Hospital</h2>
     <%--List All Hospitals--%>

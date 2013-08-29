@@ -15,8 +15,8 @@
     <%--Normal Javascript--%>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#addPanel").fadeOut();
-            $("#searchPanel").fadeOut();
+            $("#addPanel").hide();
+            $("#searchPanel").hide();
             $("#addTitle").click(function () {
                 $("#addPanel").slideToggle("slow");
             });
@@ -105,15 +105,29 @@
                                 <asp:Label ID="ViewName" runat="server" Text='<%# Bind("medicalServiceGroupName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="False">
+                        <asp:TemplateField ShowHeader="False" ItemStyle-Width="20px">
                             <EditItemTemplate>
-                                <asp:LinkButton ID="UpdateBtn" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="update" OnClick="Button_Click" OnClientClick="return confirm('Are all information correct?');"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="CancelBtn" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                                <asp:LinkButton ID="UpdateBtn" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="update" OnClick="Button_Click"></asp:LinkButton>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:LinkButton ID="EditBtn" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="DeletBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
                             </ItemTemplate>
+                            <ItemStyle Width="20px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField ShowHeader="False" ItemStyle-Width="20px">
+                            <EditItemTemplate>
+                                <asp:LinkButton ID="CancelBtn" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
+                            </ItemTemplate>
+                            <ItemStyle Width="20px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:HyperLink ID="viewBtn" runat="server" NavigateUrl='<%# Eval("medicalServiceGroupId", "viewMedicalServiceGroup.aspx?ID={0}") %>' Text="View"></asp:HyperLink>
+                            </ItemTemplate>
+                            <ItemStyle Width="20px" />
                         </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
