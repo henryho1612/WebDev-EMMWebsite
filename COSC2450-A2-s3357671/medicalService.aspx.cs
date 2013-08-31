@@ -129,6 +129,7 @@ namespace COSC2450_A2_s3357671
         {
             if (IsValid)
             {
+                System.Threading.Thread.Sleep(3000);
                 var editedRowIndex = MedicalServiceList.EditIndex;
                 var lblId = MedicalServiceList.Rows[editedRowIndex].FindControl("EditId") as Label;
                 var txtbGroupId = MedicalServiceList.Rows[editedRowIndex].FindControl("EditGroupId") as TextBox;

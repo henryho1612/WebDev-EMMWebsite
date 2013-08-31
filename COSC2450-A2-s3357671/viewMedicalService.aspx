@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ERM.Master" AutoEventWireup="true" CodeBehind="viewMedicalService.aspx.cs" Inherits="COSC2450_A2_s3357671.viewMedicalService" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContentPlaceHolder" runat="server">
     <link rel="stylesheet" href="/StyleSheet/MedicalService.css" />
     <%--Use for thread sleep on the server side--%>
@@ -13,10 +12,10 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
-    <h2 id="MedicalServiceDetailTitle" class="bodyTitle">Service Detail</h2>
+    <h2 id="ServiceDetailTitle" class="bodyTitle">Service Detail</h2>
     <%--Display Hospital Detail--%>
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
     <div id="displayPanel">
-        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
             <ProgressTemplate>
                 <div style="width: 100%; height: 20%; background-color: lightgrey; text-align: center;">
@@ -28,73 +27,48 @@
         </asp:UpdateProgress>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-
-                <asp:FormView ID="FormView1" runat="server" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" DataKeyNames="medicalServiceId" DataSourceID="LinqDataSource1" GridLines="Horizontal">
+                <asp:FormView ID="FormView1" runat="server" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" DataKeyNames="medicalServiceId" DataSourceID="LinqDataSource1" GridLines="Horizontal" OnItemDeleted="FormView1_ItemDeleted" OnItemDeleting="FormView1_ItemDeleting" OnItemUpdated="FormView1_ItemUpdated" OnPageIndexChanging="FormView1_PageIndexChanging">
                     <EditItemTemplate>
-                        medicalServiceId:
-                        <asp:Label ID="medicalServiceIdLabel1" runat="server" Text='<%# Eval("medicalServiceId") %>' />
+                        ID:
+                        <asp:Label ID="EditId" runat="server" Text='<%# Eval("medicalServiceId") %>' />
                         <br />
-                        medicalServiceGroupId:
-                        <asp:TextBox ID="medicalServiceGroupIdTextBox" runat="server" Text='<%# Bind("medicalServiceGroupId") %>' />
+                        Group Name:
+                        <asp:TextBox ID="EditGroupName" runat="server" Text='<%# Bind("MedicalServiceGroup.medicalServiceGroupName") %>' />
+                        <asp:RequiredFieldValidator runat="server" ID="EditGroupNameRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditGroupName" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:AutoCompleteExtender runat="server" ID="GroupServiceNameAutoCompleteExtender" TargetControlID="EditGroupName" ServiceMethod="GetGroupNameList" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
+                        <asp:CustomValidator runat="server" ID="UpdateServiceExistenceCustomValidator" ValidationGroup="update" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="EditGroupName" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate" Display="Dynamic"></asp:CustomValidator>
                         <br />
-                        medicalServiceName:
-                        <asp:TextBox ID="medicalServiceNameTextBox" runat="server" Text='<%# Bind("medicalServiceName") %>' />
+                        Service Name:
+                        <asp:TextBox ID="EditServiceName" runat="server" Text='<%# Bind("medicalServiceName") %>' />
+                        <asp:RequiredFieldValidator runat="server" ID="EditGroupRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditServiceName" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
-                        price:
-                        <asp:TextBox ID="priceTextBox" runat="server" Text='<%# Bind("price") %>' />
+                        Price:
+                        <asp:TextBox ID="EditPrice" runat="server" Text='<%# Bind("price") %>' />
+                        <asp:RequiredFieldValidator runat="server" ID="PriceRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditPrice" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator runat="server" ID="PriceRegularExpressionValidator" ValidationGroup="update" ErrorMessage="Invalid Type! Should be a number" ControlToValidate="EditPrice" ForeColor="Red" ValidationExpression="\d{0,18}\.\d{2}" Display="Dynamic"></asp:RegularExpressionValidator>
+                        <asp:RangeValidator runat="server" ID="PriceRangeValidator" ValidationGroup="update" ErrorMessage="Invalid Range!" ControlToValidate="EditPrice" ForeColor="Red" MinimumValue="0.00" MaximumValue="1000000.00" Type="Currency" Display="Dynamic"></asp:RangeValidator>
                         <br />
-                        LabOrderDetails:
-                        <asp:TextBox ID="LabOrderDetailsTextBox" runat="server" Text='<%# Bind("LabOrderDetails") %>' />
-                        <br />
-                        MedicalServiceGroup:
-                        <asp:TextBox ID="MedicalServiceGroupTextBox" runat="server" Text='<%# Bind("MedicalServiceGroup") %>' />
-                        <br />
-                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" ValidationGroup="update" Text="Update" OnClick="UpdateButton_Click" />
                         &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                     </EditItemTemplate>
                     <EditRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
                     <FooterStyle BackColor="White" ForeColor="#333333" />
                     <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" />
-                    <InsertItemTemplate>
-                        medicalServiceGroupId:
-                        <asp:TextBox ID="medicalServiceGroupIdTextBox" runat="server" Text='<%# Bind("medicalServiceGroupId") %>' />
-                        <br />
-                        medicalServiceName:
-                        <asp:TextBox ID="medicalServiceNameTextBox" runat="server" Text='<%# Bind("medicalServiceName") %>' />
-                        <br />
-                        price:
-                        <asp:TextBox ID="priceTextBox" runat="server" Text='<%# Bind("price") %>' />
-                        <br />
-                        LabOrderDetails:
-                        <asp:TextBox ID="LabOrderDetailsTextBox" runat="server" Text='<%# Bind("LabOrderDetails") %>' />
-                        <br />
-                        MedicalServiceGroup:
-                        <asp:TextBox ID="MedicalServiceGroupTextBox" runat="server" Text='<%# Bind("MedicalServiceGroup") %>' />
-                        <br />
-                        <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                        &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                    </InsertItemTemplate>
                     <ItemTemplate>
-                        medicalServiceId:
-                        <asp:Label ID="medicalServiceIdLabel" runat="server" Text='<%# Eval("medicalServiceId") %>' />
+                        ID:
+                        <asp:Label ID="ViewId" runat="server" Text='<%# Eval("medicalServiceId") %>' />
                         <br />
-                        medicalServiceGroupId:
-                        <asp:Label ID="medicalServiceGroupIdLabel" runat="server" Text='<%# Bind("medicalServiceGroupId") %>' />
+                        Group Id:
+                        <asp:Label ID="ViewGroupName" runat="server" Text='<%# Bind("MedicalServiceGroup.medicalServiceGroupName") %>' />
                         <br />
-                        medicalServiceName:
-                        <asp:Label ID="medicalServiceNameLabel" runat="server" Text='<%# Bind("medicalServiceName") %>' />
+                        ServiceName:
+                        <asp:Label ID="ViewServiceName" runat="server" Text='<%# Bind("medicalServiceName") %>' />
                         <br />
-                        price:
-                        <asp:Label ID="priceLabel" runat="server" Text='<%# Bind("price") %>' />
-                        <br />
-                        LabOrderDetails:
-                        <asp:Label ID="LabOrderDetailsLabel" runat="server" Text='<%# Bind("LabOrderDetails") %>' />
-                        <br />
-                        MedicalServiceGroup:
-                        <asp:Label ID="MedicalServiceGroupLabel" runat="server" Text='<%# Bind("MedicalServiceGroup") %>' />
+                        Price:
+                        <asp:Label ID="ViewPrice" runat="server" Text='<%# Bind("price") %>' />
                         <br />
                         <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                        &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                        &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
                     </ItemTemplate>
                     <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
                     <RowStyle BackColor="White" ForeColor="#333333" />
@@ -104,7 +78,6 @@
                         <asp:QueryStringParameter Name="medicalServiceId" QueryStringField="ID" Type="Int64" />
                     </WhereParameters>
                 </asp:LinqDataSource>
-
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
