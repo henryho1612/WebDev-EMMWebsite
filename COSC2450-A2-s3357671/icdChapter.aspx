@@ -20,7 +20,7 @@
             $("#addTitle").click(function () {
                 $("#addPanel").slideToggle("slow");
             });
-            $("#searchTitle").click(fudnction () {
+            $("#searchTitle").click(function () {
                 $("#searchPanel").slideToggle("slow");
             });
         });

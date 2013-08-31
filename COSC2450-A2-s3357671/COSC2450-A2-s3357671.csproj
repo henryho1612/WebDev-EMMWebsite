@@ -76,6 +76,7 @@
     <Content Include="Images\hospital-background.jpg" />
     <Content Include="Images\loader.gif" />
     <Content Include="index.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="medicalService.aspx" />
     <Content Include="medicalServiceGroup.aspx" />
     <Content Include="StyleSheet\Hospital.css" />
@@ -122,6 +123,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="medicalService.aspx.cs">
       <DependentUpon>medicalService.aspx</DependentUpon>

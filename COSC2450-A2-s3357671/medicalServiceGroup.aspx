@@ -64,6 +64,7 @@
                 </table>
             </ContentTemplate>
         </asp:UpdatePanel>
+        <asp:Label ID="LblNotice" runat="server" Text="Please log in as an admin to make changes" ForeColor="Red" Visible="false"/>
     </div>
     <h2 id="searchTitle" class="bodyTitle">Search A Medical Service Group</h2>
     <%--Search Medical Service Group Panel--%>
@@ -85,7 +86,7 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="MSGroupList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="medicalServiceGroupId" DataSourceID="MSGroupDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView" OnRowDeleting="MSGroupList_RowDeleting">
+                <asp:GridView ID="MSGroupList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="medicalServiceGroupId" DataSourceID="MSGroupDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView" OnRowDeleting="MSGroupList_RowDeleting" OnPreRender="MSGroupList_PreRender">
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>

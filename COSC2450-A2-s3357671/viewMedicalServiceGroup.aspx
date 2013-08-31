@@ -27,7 +27,7 @@
         </asp:UpdateProgress>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:FormView ID="FormView1" runat="server" DataKeyNames="medicalServiceGroupId" DataSourceID="LinqDataSource1" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" OnItemDeleted="FormView1_ItemDeleted" OnItemDeleting="FormView1_ItemDeleting" OnItemUpdated="FormView1_ItemUpdated">
+                <asp:FormView ID="FormView1" runat="server" DataKeyNames="medicalServiceGroupId" DataSourceID="LinqDataSource1" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" OnItemDeleted="FormView1_ItemDeleted" OnItemDeleting="FormView1_ItemDeleting" OnItemUpdated="FormView1_ItemUpdated" OnPreRender="FormView1_PreRender">
                     <EditItemTemplate>
                         ID:
                         <asp:Label ID="EditId" runat="server" Text='<%# Eval("medicalServiceGroupId") %>' />

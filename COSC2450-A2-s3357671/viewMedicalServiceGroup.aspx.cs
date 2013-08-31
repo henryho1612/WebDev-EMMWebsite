@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace COSC2450_A2_s3357671
 {
@@ -40,6 +41,15 @@ namespace COSC2450_A2_s3357671
         protected void FormView1_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
         {
             Response.Redirect("~/medicalServiceGroup.aspx");
+        }
+
+        protected void FormView1_PreRender(object sender, EventArgs e)
+        {
+            if (Roles.IsUserInRole("Users"))
+            {
+                FormView1.FindControl("EditBtn").Visible = false;
+                FormView1.FindControl("DeleteBtn").Visible = false;
+            }
         }
     }
 }

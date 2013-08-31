@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace COSC2450_A2_s3357671
 {
@@ -73,6 +74,20 @@ namespace COSC2450_A2_s3357671
                 _dataContext.MedicalServices.DeleteAllOnSubmit(elements);
                 _dataContext.SubmitChanges();
                 return;
+            }
+        }
+
+        protected void MSGroupList_PreRender(object sender, EventArgs e)
+        {
+            if (Roles.IsUserInRole("Users"))
+            {
+                for (var i = 0; i < MSGroupList.Rows.Count; i++)
+                {
+                    MSGroupList.Rows[i].FindControl("DeleteBtn").Visible = false;
+                    MSGroupList.Rows[i].FindControl("EditBtn").Visible = false;
+                }
+                UpdatePanel2.Visible = false;
+                LblNotice.Visible = true;
             }
         }
     }

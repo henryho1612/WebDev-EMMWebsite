@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace COSC2450_A2_s3357671
 {
@@ -39,6 +40,19 @@ namespace COSC2450_A2_s3357671
         }
 
         protected void HospitalFormView_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
+        {
+            Response.Redirect("~/hospital.aspx");
+        }
+
+        protected void HospitalFormView_PreRender(object sender, EventArgs e)
+        {
+            if (Roles.IsUserInRole("Users")) {
+                HospitalFormView.FindControl("EditBtn").Visible = false;
+                HospitalFormView.FindControl("DeleteBtn").Visible = false;
+            }
+        }
+
+        protected void BackBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/hospital.aspx");
         }

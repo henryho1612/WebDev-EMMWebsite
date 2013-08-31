@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Web.Security;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -85,6 +86,20 @@ namespace COSC2450_A2_s3357671
                 _dataContext.Visits.DeleteAllOnSubmit(elements);
                 _dataContext.SubmitChanges();
                 return;
+            }
+        }
+
+        protected void HospitalList_PreRender(object sender, EventArgs e)
+        {
+            if (Roles.IsUserInRole("Users"))
+            {
+                for (var i = 0; i < HospitalList.Rows.Count; i++)
+                {
+                    HospitalList.Rows[i].FindControl("DeleteBtn").Visible = false;
+                    HospitalList.Rows[i].FindControl("EditBtn").Visible = false;
+                }
+                UpdatePanel2.Visible = false;
+                LblNotice.Visible = true;
             }
         }
     }
