@@ -12,7 +12,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
-    <h2 id="hospitalDetailTitle" class="bodyTitle">Serivce Group Detail</h2>
+    <h2 id="msGroupDetailTitle" class="bodyTitle">Serivce Group Detail</h2>
     <%--Display Hospital Detail--%>
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
     <div id="displayPanel">
