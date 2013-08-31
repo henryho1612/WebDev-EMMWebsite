@@ -131,7 +131,7 @@
         </div>
 
         <div id="bodyPart">
-            <asp:Button ID="LogOut" runat="server" Text="Log out" OnClick="LogOut_Click"/>
+            <asp:LinkButton ID="LogOut" runat="server" Text="Log out" OnClick="LogOut_Click"/>
             <asp:ContentPlaceHolder ID="BodyContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
         </div>
 

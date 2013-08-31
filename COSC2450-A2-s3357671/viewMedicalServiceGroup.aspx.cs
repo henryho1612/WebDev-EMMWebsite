@@ -51,5 +51,10 @@ namespace COSC2450_A2_s3357671
                 FormView1.FindControl("DeleteBtn").Visible = false;
             }
         }
+
+        protected void BackButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/medicalService.aspx");
+        }
     }
 }

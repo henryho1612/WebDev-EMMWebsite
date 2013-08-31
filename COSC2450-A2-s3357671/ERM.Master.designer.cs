@@ -37,7 +37,7 @@ namespace COSC2450_A2_s3357671 {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LogOut;
+        protected global::System.Web.UI.WebControls.LinkButton LogOut;
         
         /// <summary>
         /// BodyContentPlaceHolder control.

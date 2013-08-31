@@ -34,7 +34,7 @@
                         <br />
                         Group Name:
                         <asp:TextBox ID="EditGroupName" runat="server" Text='<%# Bind("MedicalServiceGroup.medicalServiceGroupName") %>' />
-                        <asp:RequiredFieldValidator runat="server" ID="EditGroupNameRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditGroupName" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator runat="server" ID="EditGroupNameRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditGroupName" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                         <asp:AutoCompleteExtender runat="server" ID="GroupServiceNameAutoCompleteExtender" TargetControlID="EditGroupName" ServiceMethod="GetGroupNameList" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
                         <asp:CustomValidator runat="server" ID="UpdateServiceExistenceCustomValidator" ValidationGroup="update" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="EditGroupName" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate" Display="Dynamic"></asp:CustomValidator>
                         <br />
