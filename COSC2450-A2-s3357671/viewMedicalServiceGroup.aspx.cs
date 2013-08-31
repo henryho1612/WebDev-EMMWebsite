@@ -54,7 +54,7 @@ namespace COSC2450_A2_s3357671
 
         protected void BackButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/medicalService.aspx");
+            Response.Redirect("~/medicalServiceGroup.aspx");
         }
     }
 }

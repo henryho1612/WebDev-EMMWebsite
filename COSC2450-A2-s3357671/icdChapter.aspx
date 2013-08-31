@@ -15,13 +15,16 @@
     <%--Normal Javascript--%>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#addPanel").fadeOut();
-            $("#searchPanel").fadeOut();
+            $("#addPanel").hide();
+            $("#searchPanel").hide();
             $("#addTitle").click(function () {
                 $("#addPanel").slideToggle("slow");
             });
             $("#searchTitle").click(function () {
                 $("#searchPanel").slideToggle("slow");
+            });
+            $("#icdGroupTitle").click(function () {
+                $("#listPanel").slideToggle("slow");
             });
         });
     </script>
@@ -61,11 +64,13 @@
                 </table>
             </ContentTemplate>
         </asp:UpdatePanel>
+        <asp:Label ID="LblNotice" runat="server" Text="Please log in as an admin to make changes" ForeColor="Red" Visible="false"/>
     </div>
     <h2 id="searchTitle" class="bodyTitle">Search An Icd Chapter</h2>
     <%--Search Medical Service Group Panel--%>
     <div id="searchPanel">
-        Chua Lam
+        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+        <asp:AutoCompleteExtender runat="server" ID="IcdChapterAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetIcdChapters" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
     </div>
     <h2 id="icdChapterTitle" class="bodyTitle">List of Icd Chapters</h2>
     <%--List All Medical Service Groups--%>
@@ -81,7 +86,7 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="IcdChapterList" runat ="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="icdChapterId" DataSourceID="IcdChapterLinqDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView">
+                <asp:GridView ID="IcdChapterList" runat ="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="icdChapterId" DataSourceID="IcdChapterLinqDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView" OnRowDeleting="IcdChapterList_RowDeleting" OnPreRender="IcdChapterList_PreRender">
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>
@@ -105,15 +110,29 @@
                                 <asp:Label ID="ViewName" runat="server" Text='<%# Bind("icdChapterName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="False">
+                        <asp:TemplateField ShowHeader="False" ItemStyle-Width="20px">
                             <EditItemTemplate>
-                                <asp:LinkButton ID="UpdateBtn" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="update" OnClick="Button_Click" OnClientClick="return confirm('Are all information correct?');"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="CancelBtn" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                                <asp:LinkButton ID="UpdateBtn" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="update" OnClick="Button_Click"></asp:LinkButton>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:LinkButton ID="EditBtn" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="DeletBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
                             </ItemTemplate>
+                            <ItemStyle Width="20px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField ShowHeader="False" ItemStyle-Width="20px">
+                            <EditItemTemplate>
+                                <asp:LinkButton ID="CancelBtn" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
+                            </ItemTemplate>
+                            <ItemStyle Width="20px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:HyperLink ID="viewBtn" runat="server" NavigateUrl='<%# Eval("icdChapterId", "viewIcdChapter.aspx?ID={0}") %>' Text="View"></asp:HyperLink>
+                            </ItemTemplate>
+                            <ItemStyle Width="20px" />
                         </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
@@ -127,7 +146,10 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:LinqDataSource ID="IcdChapterLinqDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="IcdChapters">
+                <asp:LinqDataSource ID="IcdChapterLinqDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="IcdChapters" Where="icdChapterName.Contains(@icdChapterName)">
+                    <WhereParameters>
+                        <asp:ControlParameter ControlID="SearchTextBox" Name="icdChapterName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false"/>
+                    </WhereParameters>
                 </asp:LinqDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>

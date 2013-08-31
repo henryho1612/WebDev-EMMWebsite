@@ -86,6 +86,7 @@
     <Content Include="StyleSheet\MedicalService.css" />
     <Content Include="StyleSheet\MedicalServiceGroup.css" />
     <Content Include="viewHospital.aspx" />
+    <Content Include="viewIcdChapter.aspx" />
     <Content Include="viewMedicalService.aspx" />
     <Content Include="viewMedicalServiceGroup.aspx" />
     <Content Include="Web.config" />
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="viewHospital.aspx.designer.cs">
       <DependentUpon>viewHospital.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewIcdChapter.aspx.cs">
+      <DependentUpon>viewIcdChapter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewIcdChapter.aspx.designer.cs">
+      <DependentUpon>viewIcdChapter.aspx</DependentUpon>
     </Compile>
     <Compile Include="viewMedicalService.aspx.cs">
       <DependentUpon>viewMedicalService.aspx</DependentUpon>
