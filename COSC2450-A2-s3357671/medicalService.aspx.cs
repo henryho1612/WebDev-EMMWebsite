@@ -158,7 +158,7 @@ namespace COSC2450_A2_s3357671
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int index = e.RowIndex;
-            Label lblId = GridView1.Rows[index].FindControl("Viewid") as Label;
+            Label lblId = MedicalServiceList.Rows[index].FindControl("ViewId") as Label;
             var intId = long.Parse(lblId.Text);
             var elements = from element in _dataContext.LabOrderDetails
                            where element.medicalServiceId == intId

@@ -18,7 +18,7 @@
         $(document).ready(function () {
             $("#addPanel").hide();
             $("#searchPanel").hide();
-            $("#addTitle").click(function () {
+            $("#addServiceTitle").click(function () {
                 $("#addPanel").slideToggle("slow");
             });
             $("#searchTitle").click(function () {
@@ -33,7 +33,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
 
-    <h2 id="addTitle" class="bodyTitle">Add A Medical Service</h2>
+    <h2 id="addServiceTitle" class="bodyTitle">Add A Medical Service</h2>
     <%--Add Medical Service Panel--%>
     <div id="addPanel">
         <asp:UpdateProgress ID="updateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
@@ -63,7 +63,7 @@
                         </th>
                         <td>
                             <asp:TextBox runat="server" ID="GroupNameTextBox" /><span class="requiredField">*</span>
-                            <asp:RequiredFieldValidator runat="server" ID="AddressRequiredFieldValidator" ValidationGroup="insert" ErrorMessage="Input should not be empty!!" ControlToValidate="GroupNameTextBox" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator runat="server" ID="GroupNameRequiredFieldValidator" ValidationGroup="insert" ErrorMessage="Input should not be empty!!" ControlToValidate="GroupNameTextBox" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:AutoCompleteExtender runat="server" ID="GroupNameAutoCompleteExtender" TargetControlID="GroupNameTextBox" ServiceMethod="GetGroupNameList" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
                             <asp:CustomValidator runat="server" ID="InsertExistenceCustomValidator" ValidationGroup="insert" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="GroupNameTextBox" ForeColor="Red" OnServerValidate="ExistenceCustomValidator_ServerValidate" Display="Dynamic"></asp:CustomValidator>
                         </td>
@@ -100,10 +100,10 @@
             <asp:AutoCompleteExtender runat="server" ID="MSAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetMedicalService" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
         </div>
 
-        <div id="msgListPanel">
+        <div id="displayPanel">
             <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView1_RowDeleting" Width="100%">
+                    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" Width="40%">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:BoundField DataField="medicalServiceGroupId" HeaderText="Service Group Id" ReadOnly="True" SortExpression="medicalServiceGroupId" ItemStyle-Width="30%" />
@@ -221,9 +221,10 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:LinqDataSource ID="MedicalServiceDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServices" Where="medicalServiceName.Contains(@medicalServiceName)">
+                <asp:LinqDataSource ID="MedicalServiceDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServices" Where="medicalServiceName.Contains(@medicalServiceName) or MedicalServiceGroup.medicalServiceGroupName.Contains(@medicalServiceGroupName)">
                     <WhereParameters>
                         <asp:ControlParameter ControlID="SearchTextBox" Name="medicalServiceName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false" />
+                        <asp:ControlParameter ControlID="SearchTextBox" Name="medicalServiceGroupName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false" />
                     </WhereParameters>
                 </asp:LinqDataSource>
             </ContentTemplate>

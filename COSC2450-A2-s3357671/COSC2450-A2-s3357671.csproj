@@ -71,6 +71,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="hospital.aspx" />
+    <Content Include="icd.aspx" />
     <Content Include="icdChapter.aspx" />
     <Content Include="Images\browserIcon.ico" />
     <Content Include="Images\hospital-background.jpg" />
@@ -80,12 +81,14 @@
     <Content Include="medicalService.aspx" />
     <Content Include="medicalServiceGroup.aspx" />
     <Content Include="StyleSheet\Hospital.css" />
+    <Content Include="StyleSheet\ICD.css" />
     <Content Include="StyleSheet\ICDChapter.css" />
     <Content Include="StyleSheet\Index.css" />
     <Content Include="StyleSheet\MainPage.css" />
     <Content Include="StyleSheet\MedicalService.css" />
     <Content Include="StyleSheet\MedicalServiceGroup.css" />
     <Content Include="viewHospital.aspx" />
+    <Content Include="viewIcd.aspx" />
     <Content Include="viewIcdChapter.aspx" />
     <Content Include="viewMedicalService.aspx" />
     <Content Include="viewMedicalServiceGroup.aspx" />
@@ -110,6 +113,13 @@
     </Compile>
     <Compile Include="hospital.aspx.designer.cs">
       <DependentUpon>hospital.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="icd.aspx.cs">
+      <DependentUpon>icd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="icd.aspx.designer.cs">
+      <DependentUpon>icd.aspx</DependentUpon>
     </Compile>
     <Compile Include="icdChapter.aspx.cs">
       <DependentUpon>icdChapter.aspx</DependentUpon>
@@ -153,6 +163,13 @@
     </Compile>
     <Compile Include="viewHospital.aspx.designer.cs">
       <DependentUpon>viewHospital.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewIcd.aspx.cs">
+      <DependentUpon>viewIcd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewIcd.aspx.designer.cs">
+      <DependentUpon>viewIcd.aspx</DependentUpon>
     </Compile>
     <Compile Include="viewIcdChapter.aspx.cs">
       <DependentUpon>viewIcdChapter.aspx</DependentUpon>
