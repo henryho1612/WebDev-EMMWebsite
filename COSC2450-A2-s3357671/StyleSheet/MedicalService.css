@@ -18,28 +18,10 @@
     margin: auto;
 }
 
-.formView {
-    width:100px;
-    height:auto;
-    /*margin-right:50px;*/
-}
-
 #searchPanel {
     width:100%;
-    height:350px;
-}
-
-#searchBox {
-    width:52%;
-    padding-left:30px;
-    height:inherit;
-    float:left;
-}
-
-#msgListPanel {
-    width:45%;
-    height:inherit;
-    float:right;
+    height:32px;
+    margin-bottom: 0px;
 }
 
 .listGridView {

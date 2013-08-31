@@ -42,7 +42,7 @@
                     <EditRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
                     <FooterStyle BackColor="White" ForeColor="#333333" />
                     <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" />
-                  <ItemTemplate>
+                    <ItemTemplate>
                         ID:
                         <asp:Label ID="ViewId" runat="server" Text='<%# Eval("medicalServiceGroupId") %>' />
                         <br />
@@ -51,8 +51,8 @@
                         <br />
                         <asp:LinkButton ID="EditBtn" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
                         <asp:LinkButton ID="DeleteBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');" />
-                        <asp:LinkButton ID="BackButton" runat="server" CausesValidation="False" Text="Back" OnClick="BackButton_Click" />  
-                  </ItemTemplate>
+                        <asp:LinkButton ID="BackButton" runat="server" CausesValidation="False" Text="Back" OnClick="BackButton_Click" />
+                    </ItemTemplate>
                     <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
                     <RowStyle BackColor="White" ForeColor="#333333" />
                 </asp:FormView>

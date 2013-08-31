@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContentPlaceHolder" runat="server">
     <title>ERM System - ICD Chapter</title>
 
-    <link rel="stylesheet" href="/StyleSheet/MedicalService.css" />
+    <link rel="stylesheet" href="/StyleSheet/ICDChapter.css" />
     <%--Use for thread sleep on the server side--%>
     <script runat="server" type="text/javascript">
         protected void Button_Click(object sender, EventArgs e) {
@@ -30,9 +30,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
-<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
     
-    <h2 id="addTitle" class="bodyTitle">Add An Icd Chapter</h2>
+    <h2 id="addIcdChapterTitle" class="bodyTitle">Add An Icd Chapter</h2>
     <%--Add Medical Service Group Panel--%>
     <div id="addPanel">
         <asp:UpdateProgress ID="updateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
