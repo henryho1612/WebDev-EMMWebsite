@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContentPlaceHolder" runat="server">
-    <title>ERM System - Drug</title>
+    <title>ERM System - Doctor</title>
 
     <link rel="stylesheet" href="/StyleSheet/Doctor.css" />
     <%--Use for thread sleep on the server side--%>
@@ -148,6 +148,7 @@
                         <asp:TemplateField HeaderText="Name" SortExpression="doctorName">
                             <EditItemTemplate>
                                 <asp:TextBox ID="EditName" runat="server" Text='<%# Bind("doctorName") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator runat="server" ID="NameRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditName" ForeColor="Red"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="ViewName" runat="server" Text='<%# Bind("doctorName") %>'></asp:Label>
@@ -165,7 +166,7 @@
                             <EditItemTemplate>
                                 <asp:TextBox runat="server" ID="EditDOBTextBox" Enabled="false" Text='<%# Bind("dob") %>' /><asp:ImageButton ID="CalendarButton" runat="server" ImageUrl="~/Images/calendar.ico" Width="25px" Height="25px" ImageAlign="AbsMiddle" /><span class="requiredField">*</span>
                                 <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="EditDOBTextBox" PopupButtonID="CalendarButton"></asp:CalendarExtender>
-                                <asp:RequiredFieldValidator runat="server" ID="DOBRequiredFieldValidator" ValidationGroup="insert" ErrorMessage="A date should be chosen!!" ControlToValidate="EditDOBTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator runat="server" ID="DOBRequiredFieldValidator" ValidationGroup="update" ErrorMessage="A date should be chosen!!" ControlToValidate="EditDOBTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="ViewDOB" runat="server" Text='<%# Bind("dob") %>'></asp:Label>
@@ -174,6 +175,7 @@
                         <asp:TemplateField HeaderText="Address" SortExpression="address">
                             <EditItemTemplate>
                                 <asp:TextBox ID="EditAddress" runat="server" Text='<%# Bind("address") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator runat="server" ID="AddressRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditAddress" ForeColor="Red"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="ViewAddress" runat="server" Text='<%# Bind("address") %>'></asp:Label>
@@ -182,6 +184,7 @@
                         <asp:TemplateField HeaderText="License" SortExpression="license">
                             <EditItemTemplate>
                                 <asp:TextBox ID="EditLicense" runat="server" Text='<%# Bind("license") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator runat="server" ID="LicenseRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditLicense" ForeColor="Red"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="ViewLicense" runat="server" Text='<%# Bind("license") %>'></asp:Label>
