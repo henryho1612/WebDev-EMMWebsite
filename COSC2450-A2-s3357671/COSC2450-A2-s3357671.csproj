@@ -70,18 +70,21 @@
     <Content Include="bootstrap\img\glyphicons-halflings.png" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="doctor.aspx" />
     <Content Include="drug.aspx" />
     <Content Include="drugGroup.aspx" />
     <Content Include="hospital.aspx" />
     <Content Include="icd.aspx" />
     <Content Include="icdChapter.aspx" />
     <Content Include="Images\browserIcon.ico" />
+    <Content Include="Images\calendar.ico" />
     <Content Include="Images\hospital-background.jpg" />
     <Content Include="Images\loader.gif" />
     <Content Include="index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="medicalService.aspx" />
     <Content Include="medicalServiceGroup.aspx" />
+    <Content Include="StyleSheet\Doctor.css" />
     <Content Include="StyleSheet\DrugGroup.css" />
     <Content Include="StyleSheet\Hospital.css" />
     <Content Include="StyleSheet\ICD.css" />
@@ -104,6 +107,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="doctor.aspx.cs">
+      <DependentUpon>doctor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="doctor.aspx.designer.cs">
+      <DependentUpon>doctor.aspx</DependentUpon>
     </Compile>
     <Compile Include="drug.aspx.cs">
       <DependentUpon>drug.aspx</DependentUpon>

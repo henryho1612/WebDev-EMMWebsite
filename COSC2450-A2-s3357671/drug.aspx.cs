@@ -118,7 +118,7 @@ namespace COSC2450_A2_s3357671
         //For Search
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
-        public static string[] GetIcd(string prefixText)
+        public static string[] GetDrug(string prefixText)
         {
             var dataContext = new DBDataContext();
             var result = (from element in dataContext.Drugs

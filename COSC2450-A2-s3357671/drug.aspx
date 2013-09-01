@@ -115,7 +115,7 @@
     <div id="searchPanel">
         <div id="searchBox">
             <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="580px"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
-            <asp:AutoCompleteExtender runat="server" ID="DrugsAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetIcd" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
+            <asp:AutoCompleteExtender runat="server" ID="DrugsAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetDrug" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
         </div>
 
         <div id="displayPanel">
