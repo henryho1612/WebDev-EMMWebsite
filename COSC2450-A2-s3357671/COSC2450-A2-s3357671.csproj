@@ -70,6 +70,8 @@
     <Content Include="bootstrap\img\glyphicons-halflings.png" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="drug.aspx" />
+    <Content Include="drugGroup.aspx" />
     <Content Include="hospital.aspx" />
     <Content Include="icd.aspx" />
     <Content Include="icdChapter.aspx" />
@@ -80,6 +82,7 @@
     <Content Include="Login.aspx" />
     <Content Include="medicalService.aspx" />
     <Content Include="medicalServiceGroup.aspx" />
+    <Content Include="StyleSheet\DrugGroup.css" />
     <Content Include="StyleSheet\Hospital.css" />
     <Content Include="StyleSheet\ICD.css" />
     <Content Include="StyleSheet\ICDChapter.css" />
@@ -87,6 +90,8 @@
     <Content Include="StyleSheet\MainPage.css" />
     <Content Include="StyleSheet\MedicalService.css" />
     <Content Include="StyleSheet\MedicalServiceGroup.css" />
+    <Content Include="viewDrug.aspx" />
+    <Content Include="viewDrugGroup.aspx" />
     <Content Include="viewHospital.aspx" />
     <Content Include="viewIcd.aspx" />
     <Content Include="viewIcdChapter.aspx" />
@@ -99,6 +104,20 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="drug.aspx.cs">
+      <DependentUpon>drug.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="drug.aspx.designer.cs">
+      <DependentUpon>drug.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="drugGroup.aspx.cs">
+      <DependentUpon>drugGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="drugGroup.aspx.designer.cs">
+      <DependentUpon>drugGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="ERM.Master.cs">
       <DependentUpon>ERM.Master</DependentUpon>
@@ -157,6 +176,20 @@
       <DependentUpon>medicalServiceGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="viewDrug.aspx.cs">
+      <DependentUpon>viewDrug.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewDrug.aspx.designer.cs">
+      <DependentUpon>viewDrug.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewDrugGroup.aspx.cs">
+      <DependentUpon>viewDrugGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewDrugGroup.aspx.designer.cs">
+      <DependentUpon>viewDrugGroup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewHospital.aspx.cs">
       <DependentUpon>viewHospital.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

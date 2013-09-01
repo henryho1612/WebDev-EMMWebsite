@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ERM.Master" AutoEventWireup="true" CodeBehind="icdChapter.aspx.cs" Inherits="COSC2450_A2_s3357671.icdChapter" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ERM.Master" AutoEventWireup="true" CodeBehind="drugGroup.aspx.cs" Inherits="COSC2450_A2_s3357671.drugGroup" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContentPlaceHolder" runat="server">
-    <title>ERM System - ICD Chapter</title>
+    <title>ERM System - Drug Group</title>
 
-    <link rel="stylesheet" href="/StyleSheet/ICDChapter.css" />
+    <link rel="stylesheet" href="/StyleSheet/DrugGroup.css" />
     <%--Use for thread sleep on the server side--%>
     <script runat="server" type="text/javascript">
         protected void Button_Click(object sender, EventArgs e) {
@@ -23,7 +23,7 @@
             $("#searchTitle").click(function () {
                 $("#searchPanel").slideToggle("slow");
             });
-            $("#icdChapterTitle").click(function () {
+            $("#drugGroupTitle").click(function () {
                 $("#listPanel").slideToggle("slow");
             });
         });
@@ -32,8 +32,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
     
-    <h2 id="addTitle" class="bodyTitle">Add An Icd Chapter</h2>
-    <%--Add an icd chapter Panel--%>
+    <h2 id="addTitle" class="bodyTitle">Add A Drug Group</h2>
+    <%--Add Medical Service Group Panel--%>
     <div id="addPanel">
         <asp:UpdateProgress ID="updateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
             <ProgressTemplate>
@@ -48,17 +48,17 @@
             <ContentTemplate>
                 <table>
                     <tr class="addOptionLabel">
-                        <th><label id="lblName" class="addOption">ICD Chapter Name: </label></th>
+                        <th><label id="lblName" class="addOption">Drug Group: </label></th>
                         <td>
                             <asp:TextBox runat="server" ID="NameTextBox" /><span class="requiredField">*</span>
-                            <asp:RequiredFieldValidator runat="server" ID="NameRequiredFieldValidator1" ValidationGroup="insert" ErrorMessage="Input should not be empty!!" ControlToValidate="NameTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator runat="server" ID="NameRequiredFieldValidator" ValidationGroup="insert" ErrorMessage="Input should not be empty!!" ControlToValidate="NameTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr class="addOptionLabel">
                         <td></td>
                         <td>
-                            <asp:Button runat="server" ID="AddICDChapterButton" CausesValidation="true" ValidationGroup="insert" Text="Submit" UseSubmitBehavior="true" OnClick="AddICDChapterGroupButton_Click"/>
-                            <asp:Button runat="server" ID="ResetICDChapterGroupButton" CausesValidation="false" Text="Reset" OnClick="AddICDChapterGroupButton_Click" />
+                            <asp:Button runat="server" ID="AddDGroupButton" CausesValidation="true" ValidationGroup="insert" Text="Submit" UseSubmitBehavior="true" OnClick="AddDGroupButton_Click"/>
+                            <asp:Button runat="server" ID="ResetDGroupButton" CausesValidation="false" Text="Reset" OnClick="AddDGroupButton_Click" />
                         </td>
                     </tr>
                 </table>
@@ -66,14 +66,14 @@
         </asp:UpdatePanel>
         <asp:Label ID="LblNotice" runat="server" Text="Please log in as an admin to make changes" ForeColor="Red" Visible="false"/>
     </div>
-    <h2 id="searchTitle" class="bodyTitle">Search An Icd Chapter</h2>
-    <%--Search an icd chapter Panel--%>
+    <h2 id="searchTitle" class="bodyTitle">Search A Drug Group</h2>
+    <%--Search Medical Service Group Panel--%>
     <div id="searchPanel">
         <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
-        <asp:AutoCompleteExtender runat="server" ID="IcdChapterAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetIcdChapters" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
+        <asp:AutoCompleteExtender runat="server" ID="DrugGroupAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetDrugGroups" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
     </div>
-    <h2 id="icdChapterTitle" class="bodyTitle">List of Icd Chapters</h2>
-    <%--List All icdChapters Groups--%>
+    <h2 id="drugGroupTitle" class="bodyTitle">List of Drug Groups</h2>
+    <%--List All Medical Service Groups--%>
     <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div style="width:100%; height: 100%; background-color:lightgrey; text-align:center;">
@@ -86,28 +86,28 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="IcdChapterList" runat ="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="icdChapterId" DataSourceID="IcdChapterLinqDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView" OnRowDeleting="IcdChapterList_RowDeleting" OnPreRender="IcdChapterList_PreRender">
+                <asp:GridView ID="DrugGroupList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="drugGroupId" DataSourceID="DrugGroupLinqDataSource" ForeColor="#333333" GridLines="None"  CssClass="listGridView" OnRowDeleting="DrugGroupList_RowDeleting" OnPreRender="DrugGroupList_PreRender">
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>
                     </EmptyDataTemplate>
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
-                        <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="icdChapterId">
+                        <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="drugGroupId">
                             <EditItemTemplate>
-                                <asp:Label ID="EditId" runat="server" Text='<%# Eval("icdChapterId") %>'></asp:Label>
+                                <asp:Label ID="EditId" runat="server" Text='<%# Eval("drugGroupId") %>'></asp:Label>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="ViewId" runat="server" Text='<%# Bind("icdChapterId") %>'></asp:Label>
+                                <asp:Label ID="ViewId" runat="server" Text='<%# Bind("drugGroupId") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Icd Chapter" SortExpression="icdChapterName">
+                        <asp:TemplateField HeaderText="Drug Group" SortExpression="drugGroupName">
                             <EditItemTemplate>
-                                <asp:TextBox ID="EditName" runat="server" Text='<%# Bind("icdChapterName") %>'></asp:TextBox>
+                                <asp:TextBox ID="EditName" runat="server" Text='<%# Bind("drugGroupName") %>'></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="EditNameRequiredFieldValidator" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditName" ForeColor="Red"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="ViewName" runat="server" Text='<%# Bind("icdChapterName") %>'></asp:Label>
+                                <asp:Label ID="ViewName" runat="server" Text='<%# Bind("drugGroupName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField ShowHeader="False" ItemStyle-Width="20px">
@@ -130,7 +130,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:HyperLink ID="viewBtn" runat="server" NavigateUrl='<%# Eval("icdChapterId", "viewIcdChapter.aspx?ID={0}") %>' Text="View"></asp:HyperLink>
+                                <asp:HyperLink ID="viewBtn" runat="server" NavigateUrl='<%# Eval("drugGroupId", "viewDrugGroup.aspx?ID={0}") %>' Text="View"></asp:HyperLink>
                             </ItemTemplate>
                             <ItemStyle Width="20px" />
                         </asp:TemplateField>
@@ -146,9 +146,9 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:LinqDataSource ID="IcdChapterLinqDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="IcdChapters" Where="icdChapterName.Contains(@icdChapterName)">
+                <asp:LinqDataSource ID="DrugGroupLinqDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="DrugGroups" Where="drugGroupName.Contains(@drugGroupName)">
                     <WhereParameters>
-                        <asp:ControlParameter ControlID="SearchTextBox" Name="icdChapterName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false"/>
+                        <asp:ControlParameter ControlID="SearchTextBox" Name="drugGroupName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false"/>
                     </WhereParameters>
                 </asp:LinqDataSource>
             </ContentTemplate>
