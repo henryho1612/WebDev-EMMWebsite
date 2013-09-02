@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
-using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -10,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace COSC2450_A2_s3357671
 {
-    public partial class viewLabOrder : System.Web.UI.Page
+    public partial class viewPrescription : System.Web.UI.Page
     {
         private DBDataContext _dataContext;
 
@@ -50,9 +49,9 @@ namespace COSC2450_A2_s3357671
                 TextBox txtBoxDate = FormView1.FindControl("EditDate") as TextBox;
                 var date = Convert.ToDateTime(txtBoxDate.Text);
 
-                var labOrder = new LabOrder() { labOrderId = id, doctorId = doctorId, dateVisit = date};
-                _dataContext.LabOrders.Attach(labOrder);
-                _dataContext.Refresh(RefreshMode.KeepCurrentValues, labOrder);
+                var prescription = new Prescription() { prescriptionId = id, doctorId = doctorId, dateWritten = date };
+                _dataContext.Prescriptions.Attach(prescription);
+                _dataContext.Refresh(RefreshMode.KeepCurrentValues, prescription);
                 _dataContext.SubmitChanges();
 
                 //Use For Debug passed value
@@ -87,7 +86,7 @@ namespace COSC2450_A2_s3357671
         //ItemDeleted Event Control
         protected void FormView1_ItemDeleted(object sender, FormViewDeletedEventArgs e)
         {
-            Response.Redirect("~/labOrder.aspx");
+            Response.Redirect("~/prescription.aspx");
         }
 
         //ItemDeleting Event Control
@@ -95,16 +94,16 @@ namespace COSC2450_A2_s3357671
         {
             Label lblId = FormView1.FindControl("ViewId") as Label;
             var id = long.Parse(lblId.Text);
-            var labOrderDetails = from element in _dataContext.LabOrderDetails
-                                  where element.labOrderId == id
+            var prescriptionDetails = from element in _dataContext.PrescriptionDetails
+                                  where element.prescriptionId == id
                                   select element;
             var visits = from element in _dataContext.Visits
-                         where element.labOrderId == id
+                         where element.prescriptionId == id
                          select element;
 
-            if (labOrderDetails.Count() != 0 || visits.Count() != 0)
+            if (prescriptionDetails.Count() != 0 || visits.Count() != 0)
             {
-                _dataContext.LabOrderDetails.DeleteAllOnSubmit(labOrderDetails);
+                _dataContext.PrescriptionDetails.DeleteAllOnSubmit(prescriptionDetails);
                 _dataContext.Visits.DeleteAllOnSubmit(visits);
                 _dataContext.SubmitChanges();
                 return;
@@ -114,7 +113,7 @@ namespace COSC2450_A2_s3357671
         //ItemUpdated Event Control
         protected void FormView1_ItemUpdated(object sender, FormViewUpdatedEventArgs e)
         {
-            Response.Redirect("~/labOrder.aspx");
+            Response.Redirect("~/prescription.aspx");
         }
 
         //Role Control
@@ -130,7 +129,7 @@ namespace COSC2450_A2_s3357671
         //Back Button Control
         protected void BackButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/labOrder.aspx");
+            Response.Redirect("~/prescription.aspx");
         }
     }
 }

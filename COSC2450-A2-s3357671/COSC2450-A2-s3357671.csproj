@@ -86,6 +86,7 @@
     <Content Include="medicalService.aspx" />
     <Content Include="medicalServiceGroup.aspx" />
     <Content Include="patient.aspx" />
+    <Content Include="prescription.aspx" />
     <Content Include="StyleSheet\Doctor.css" />
     <Content Include="StyleSheet\DrugGroup.css" />
     <Content Include="StyleSheet\Hospital.css" />
@@ -106,6 +107,7 @@
     <Content Include="viewMedicalService.aspx" />
     <Content Include="viewMedicalServiceGroup.aspx" />
     <Content Include="viewPatient.aspx" />
+    <Content Include="viewPrescription.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +207,13 @@
     <Compile Include="patient.aspx.designer.cs">
       <DependentUpon>patient.aspx</DependentUpon>
     </Compile>
+    <Compile Include="prescription.aspx.cs">
+      <DependentUpon>prescription.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prescription.aspx.designer.cs">
+      <DependentUpon>prescription.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="viewDoctor.aspx.cs">
       <DependentUpon>viewDoctor.aspx</DependentUpon>
@@ -275,6 +284,13 @@
     </Compile>
     <Compile Include="viewPatient.aspx.designer.cs">
       <DependentUpon>viewPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewPrescription.aspx.cs">
+      <DependentUpon>viewPrescription.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewPrescription.aspx.designer.cs">
+      <DependentUpon>viewPrescription.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

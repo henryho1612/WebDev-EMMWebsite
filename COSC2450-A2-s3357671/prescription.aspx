@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ERM.Master" AutoEventWireup="true" CodeBehind="labOrder.aspx.cs" Inherits="COSC2450_A2_s3357671.labOrder" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ERM.Master" AutoEventWireup="true" CodeBehind="prescription.aspx.cs" Inherits="COSC2450_A2_s3357671.prescription" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContentPlaceHolder" runat="server">
-    <title>ERM System - Lab Order</title>
+    <title>ERM System - Prescription</title>
 
-    <link rel="stylesheet" href="/StyleSheet/LabOrder.css" />
+    <link rel="stylesheet" href="/StyleSheet/Prescription.css" />
     <%--Use for thread sleep on the server side--%>
     <script runat="server" type="text/javascript">
         protected void Button_Click(object sender, EventArgs e)
@@ -24,7 +24,7 @@
             $("#searchTitle").click(function () {
                 $("#searchPanel").slideToggle("slow");
             });
-            $("#labOrderTitle").click(function () {
+            $("#prescriptionTitle").click(function () {
                 $("#listPanel").slideToggle("slow");
             });
         });
@@ -33,7 +33,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
 
-    <h2 id="addTitle" class="bodyTitle">Add A Lab Order</h2>
+    <h2 id="addTitle" class="bodyTitle">Add A Prescription</h2>
     <%--Add an icd chapter Panel--%>
     <div id="addPanel">
         <asp:UpdateProgress ID="updateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
@@ -72,8 +72,8 @@
                     <tr class="addOptionLabel">
                         <td></td>
                         <td>
-                            <asp:Button runat="server" ID="AddLabOrderButton" CausesValidation="true" ValidationGroup="insert" Text="Submit" UseSubmitBehavior="true" OnClick="AddLabOrderGroupButton_Click" />
-                            <asp:Button runat="server" ID="ResetLabOrderGroupButton" CausesValidation="false" Text="Reset" OnClick="AddLabOrderGroupButton_Click" />
+                            <asp:Button runat="server" ID="AddPrescriptionButton" CausesValidation="true" ValidationGroup="insert" Text="Submit" UseSubmitBehavior="true" OnClick="AddPrescriptionGroupButton_Click" />
+                            <asp:Button runat="server" ID="ResetPrescriptionGroupButton" CausesValidation="false" Text="Reset" OnClick="AddPrescriptionGroupButton_Click" />
                         </td>
                     </tr>
                 </table>
@@ -82,17 +82,17 @@
         <asp:Label ID="LblNotice" runat="server" Text="Please log in as an admin to make changes" ForeColor="Red" Visible="false" />
     </div>
 
-    <h2 id="searchTitle" class="bodyTitle">Search A Lab Order</h2>
-    <%--Search LabOrders Panel--%>
+    <h2 id="searchTitle" class="bodyTitle">Search A Prescription</h2>
+    <%--Search Prescriptions Panel--%>
     <div id="searchPanel">
         <div id="searchBox">
             <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="580px"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
-            <asp:AutoCompleteExtender runat="server" ID="LabOrderAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetLabOrders" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
+            <asp:AutoCompleteExtender runat="server" ID="PrescriptionAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetPrescriptions" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
         </div>
     </div>
 
-    <%--List All LabOrders--%>
-    <h2 id="labOrderTitle" class="bodyTitle">List of Lab Orders</h2>
+    <%--List All Icd--%>
+    <h2 id="icdTitle" class="bodyTitle">List of Icds</h2>
     <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div style="width: 100%; height: 100%; background-color: lightgrey; text-align: center;">
@@ -105,15 +105,15 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="LabOrderList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="labOrderId" DataSourceID="LabOrderLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="LabOrderList_PreRender">
+                <asp:GridView ID="PrescriptionList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="prescriptionId" DataSourceID="PrescriptionLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="PrescriptionList_PreRender">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
-                        <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="labOrderId">
+                        <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="prescriptionId">
                             <EditItemTemplate>
-                                <asp:Label ID="EditId" runat="server" Text='<%# Eval("labOrderId") %>'></asp:Label>
+                                <asp:Label ID="EditId" runat="server" Text='<%# Eval("prescriptionId") %>'></asp:Label>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="ViewId" runat="server" Text='<%# Bind("labOrderId") %>'></asp:Label>
+                                <asp:Label ID="ViewId" runat="server" Text='<%# Bind("prescriptionId") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Doctor Name" SortExpression="doctorId">
@@ -127,14 +127,14 @@
                                 <asp:Label ID="ViewDName" runat="server" Text='<%# Bind("Doctor.doctorName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Visited Date" SortExpression="dateVisit">
+                        <asp:TemplateField HeaderText="Visited Date" SortExpression="dateWritten">
                             <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditDate" Enabled="false" Text='<%# Bind("dateVisit") %>' /><asp:ImageButton ID="CalendarButton" runat="server" ImageUrl="~/Images/calendar.ico" Width="25px" Height="25px" ImageAlign="AbsMiddle" /><span class="requiredField">*</span>
+                                <asp:TextBox runat="server" ID="EditDate" Enabled="false" Text='<%# Bind("dateWritten") %>' /><asp:ImageButton ID="CalendarButton" runat="server" ImageUrl="~/Images/calendar.ico" Width="25px" Height="25px" ImageAlign="AbsMiddle" /><span class="requiredField">*</span>
                                 <asp:CalendarExtender ID="VisitedDateCalendarExtender" runat="server" TargetControlID="EditDate" PopupButtonID="CalendarButton"></asp:CalendarExtender>
                                 <asp:RequiredFieldValidator runat="server" ID="VisitedDateRequiredFieldValidator" ValidationGroup="update" ErrorMessage="A date should be chosen!!" ControlToValidate="EditDate" ForeColor="Red"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="ViewDate" runat="server" Text='<%# Bind("dateVisit") %>'></asp:Label>
+                                <asp:Label ID="ViewDate" runat="server" Text='<%# Bind("dateWritten") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField ShowHeader="false" ItemStyle-Width="20px">
@@ -156,7 +156,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:HyperLink ID="ViewBtn" runat="server" NavigateUrl='<%# Eval("labOrderId", "viewLabOrder.aspx?ID={0}") %>' Text="View"></asp:HyperLink>
+                                <asp:HyperLink ID="ViewBtn" runat="server" NavigateUrl='<%# Eval("prescriptionId", "viewPrescription.aspx?ID={0}") %>' Text="View"></asp:HyperLink>
                             </ItemTemplate>
                             <ItemStyle Width="20px" />
                         </asp:TemplateField>
@@ -172,7 +172,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:LinqDataSource ID="LabOrderLinqDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="LabOrders" Where="Doctor.doctorName.Contains(@doctorName)">
+                <asp:LinqDataSource ID="PrescriptionLinqDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Prescriptions" Where="Doctor.doctorName.Contains(@doctorName)">
                     <WhereParameters>
                         <asp:ControlParameter ControlID="SearchTextBox" Name="doctorName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false"/>
                     </WhereParameters>
