@@ -10,7 +10,7 @@
 namespace COSC2450_A2_s3357671 {
     
     
-    public partial class patient {
+    public partial class labOrder {
         
         /// <summary>
         /// ToolkitScriptManager1 control.
@@ -49,40 +49,40 @@ namespace COSC2450_A2_s3357671 {
         protected global::System.Web.UI.WebControls.TextBox NameTextBox;
         
         /// <summary>
-        /// NameRequiredFieldValidator control.
+        /// NameRequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator NameRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NameRequiredFieldValidator1;
         
         /// <summary>
-        /// GenderRadioButtonList1 control.
+        /// GroupNameAutoCompleteExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList GenderRadioButtonList1;
+        protected global::AjaxControlToolkit.AutoCompleteExtender GroupNameAutoCompleteExtender;
         
         /// <summary>
-        /// LinqDataSource1 control.
+        /// InsertExistenceCustomValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqDataSource1;
+        protected global::System.Web.UI.WebControls.CustomValidator InsertExistenceCustomValidator;
         
         /// <summary>
-        /// DOBTextBox control.
+        /// VisitedDateTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DOBTextBox;
+        protected global::System.Web.UI.WebControls.TextBox VisitedDateTextBox;
         
         /// <summary>
         /// CalendarButton control.
@@ -94,58 +94,40 @@ namespace COSC2450_A2_s3357671 {
         protected global::System.Web.UI.WebControls.ImageButton CalendarButton;
         
         /// <summary>
-        /// CalendarExtender1 control.
+        /// VisitedDateCalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::AjaxControlToolkit.CalendarExtender VisitedDateCalendarExtender;
         
         /// <summary>
-        /// DOBRequiredFieldValidator control.
+        /// VisitedDateRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator DOBRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator VisitedDateRequiredFieldValidator;
         
         /// <summary>
-        /// AddressTextBox control.
+        /// AddLabOrderButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddressTextBox;
+        protected global::System.Web.UI.WebControls.Button AddLabOrderButton;
         
         /// <summary>
-        /// AddressRequiredFieldValidator control.
+        /// ResetLabOrderGroupButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator AddressRequiredFieldValidator;
-        
-        /// <summary>
-        /// AddPatientButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddPatientButton;
-        
-        /// <summary>
-        /// ResetPatientButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ResetPatientButton;
+        protected global::System.Web.UI.WebControls.Button ResetLabOrderGroupButton;
         
         /// <summary>
         /// LblNotice control.
@@ -175,13 +157,13 @@ namespace COSC2450_A2_s3357671 {
         protected global::System.Web.UI.WebControls.Button SearchBtn;
         
         /// <summary>
-        /// PatientAutoCompleteExtender control.
+        /// LabOrderAutoCompleteExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.AutoCompleteExtender PatientAutoCompleteExtender;
+        protected global::AjaxControlToolkit.AutoCompleteExtender LabOrderAutoCompleteExtender;
         
         /// <summary>
         /// updateProgress control.
@@ -202,21 +184,21 @@ namespace COSC2450_A2_s3357671 {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// PatientsList control.
+        /// LabOrderList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView PatientsList;
+        protected global::System.Web.UI.WebControls.GridView LabOrderList;
         
         /// <summary>
-        /// PatientsLinqDataSource control.
+        /// LabOrderLinqDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource PatientsLinqDataSource;
+        protected global::System.Web.UI.WebControls.LinqDataSource LabOrderLinqDataSource;
     }
 }

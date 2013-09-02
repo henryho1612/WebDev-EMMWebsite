@@ -81,6 +81,7 @@
     <Content Include="Images\hospital-background.jpg" />
     <Content Include="Images\loader.gif" />
     <Content Include="index.aspx" />
+    <Content Include="labOrder.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="medicalService.aspx" />
     <Content Include="medicalServiceGroup.aspx" />
@@ -94,14 +95,17 @@
     <Content Include="StyleSheet\MainPage.css" />
     <Content Include="StyleSheet\MedicalService.css" />
     <Content Include="StyleSheet\MedicalServiceGroup.css" />
+    <Content Include="StyleSheet\Patient.css" />
     <Content Include="viewDoctor.aspx" />
     <Content Include="viewDrug.aspx" />
     <Content Include="viewDrugGroup.aspx" />
     <Content Include="viewHospital.aspx" />
     <Content Include="viewIcd.aspx" />
     <Content Include="viewIcdChapter.aspx" />
+    <Content Include="viewLabOrder.aspx" />
     <Content Include="viewMedicalService.aspx" />
     <Content Include="viewMedicalServiceGroup.aspx" />
+    <Content Include="viewPatient.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +169,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="labOrder.aspx.cs">
+      <DependentUpon>labOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="labOrder.aspx.designer.cs">
+      <DependentUpon>labOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -237,6 +248,13 @@
     <Compile Include="viewIcdChapter.aspx.designer.cs">
       <DependentUpon>viewIcdChapter.aspx</DependentUpon>
     </Compile>
+    <Compile Include="viewLabOrder.aspx.cs">
+      <DependentUpon>viewLabOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewLabOrder.aspx.designer.cs">
+      <DependentUpon>viewLabOrder.aspx</DependentUpon>
+    </Compile>
     <Compile Include="viewMedicalService.aspx.cs">
       <DependentUpon>viewMedicalService.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -250,6 +268,13 @@
     </Compile>
     <Compile Include="viewMedicalServiceGroup.aspx.designer.cs">
       <DependentUpon>viewMedicalServiceGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewPatient.aspx.cs">
+      <DependentUpon>viewPatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewPatient.aspx.designer.cs">
+      <DependentUpon>viewPatient.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

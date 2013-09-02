@@ -24,7 +24,7 @@
             $("#searchTitle").click(function () {
                 $("#searchPanel").slideToggle("slow");
             });
-            $("#drugTitle").click(function () {
+            $("#doctorTitle").click(function () {
                 $("#listPanel").slideToggle("slow");
             });
         });
@@ -117,7 +117,7 @@
     </div>
 
     <%--List All Drugs--%>
-    <h2 id="drugTitle" class="bodyTitle">List of Drugs</h2>
+    <h2 id="doctorTitle" class="bodyTitle">List of Doctors</h2>
     <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div style="width: 100%; height: 100%; background-color: lightgrey; text-align: center;">
