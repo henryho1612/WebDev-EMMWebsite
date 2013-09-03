@@ -28,7 +28,7 @@
                 $("#listPanel").slideToggle("slow");
             });
             $("#notice").click(function () {
-                $("#notice").slideToggle("slow");
+                $("#noticePanel").slideToggle("slow");
             });
         });
     </script>
@@ -152,10 +152,8 @@
                             <EditItemTemplate>
                                 <asp:TextBox ID="EditPID" runat="server" Text='<%# Bind("prescriptionId") %>'></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="EditPIDRequiredFieldValidator1" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditPID" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator runat="server" ID="EditPIDRegularExpressionValidator1" ValidationGroup="update" ErrorMessage="Invalid Type! Should be a number" ControlToValidate="EditPID" ForeColor="Red" ValidationExpression="\d{1,2}" Display="Dynamic"></asp:RegularExpressionValidator>
                                 <asp:CustomValidator runat="server" ID="EditPIDInsertExistenceCustomValidator" ValidationGroup="update" ErrorMessage="Inputted id does not exist!!!" ControlToValidate="EditPID" ForeColor="Red" OnServerValidate="InsertExistenceCustomValidator_ServerValidate" Display="Dynamic"></asp:CustomValidator>
                                 <asp:AutoCompleteExtender runat="server" ID="EditPIDAutoCompleteExtender" TargetControlID="EditPID" ServiceMethod="GetPrescriptionList" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
-
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="ViewPId" runat="server" Text='<%# Bind("prescriptionId") %>'></asp:Label>
@@ -236,7 +234,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:LinqDataSource ID="PresDetailLinqDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="PrescriptionDetails" Where="Drug.drugName.Contains(@drugName) or dosePerDay == @dosePerDay or quantity == @quantity or specialInstruction.Contains(@specialInstruction) or prescriptionId == @prescriptionId">
+                <asp:LinqDataSource ID="PresDetailLinqDataSource" runat="server" ContextTypeName="COSC2450_A2_s3357671.DBDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="PrescriptionDetails" Where="Drug.drugName.Contains(@drugName) or specialInstruction.Contains(@specialInstruction)">
                     <WhereParameters>
                         <asp:ControlParameter ControlID="SearchTextBox" Name="drugName" PropertyName="Text" Type="String" ConvertEmptyStringToNull="false" />
                         <%--<asp:ControlParameter ControlID="SearchTextBox" Name="dosePerDay" PropertyName="Text" Type="Int32" />

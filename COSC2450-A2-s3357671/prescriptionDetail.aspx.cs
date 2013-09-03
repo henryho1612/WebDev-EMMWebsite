@@ -131,7 +131,7 @@ namespace COSC2450_A2_s3357671
         {
             if (Roles.IsUserInRole("Users"))
             {
-                for (var i = 0; i < PrescriptionList.Rows.Count; i++)
+                for (var i = 0; i < PrescriptionDetailList.Rows.Count; i++)
                 {
                     PrescriptionDetailList.Rows[i].FindControl("DeleteBtn").Visible = false;
                     PrescriptionDetailList.Rows[i].FindControl("EditBtn").Visible = false;
@@ -203,6 +203,5 @@ namespace COSC2450_A2_s3357671
                          select element.prescriptionId.ToString();
             return result.ToArray();
         }
-
     }
 }

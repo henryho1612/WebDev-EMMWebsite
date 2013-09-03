@@ -62,9 +62,9 @@ namespace COSC2450_A2_s3357671
         public static string[] GetGroupNameList(string prefixText)
         {
             var dataContext = new DBDataContext();
-            var result = from element in dataContext.MedicalServiceGroups
+            var result = (from element in dataContext.MedicalServiceGroups
                          where element.medicalServiceGroupName.ToString().ToLower().StartsWith(prefixText)
-                         select element.medicalServiceGroupName.ToString();
+                         select element.medicalServiceGroupName.ToString()).Distinct();
             return result.ToArray();
         }
 
@@ -85,10 +85,10 @@ namespace COSC2450_A2_s3357671
             var dataContext = new DBDataContext();
             var result = (from element in dataContext.MedicalServices
                           where element.medicalServiceName.ToLower().StartsWith(prefixText)
-                          select element.medicalServiceName.ToString())
+                          select element.medicalServiceName.ToString()).Distinct()
                          .Union(from element in dataContext.MedicalServices
                                 where element.MedicalServiceGroup.medicalServiceGroupName.ToString().ToLower().StartsWith(prefixText)
-                                select element.MedicalServiceGroup.medicalServiceGroupName.ToString());
+                                select element.MedicalServiceGroup.medicalServiceGroupName.ToString()).Distinct();
 
             return result.ToArray();
         }
@@ -109,21 +109,6 @@ namespace COSC2450_A2_s3357671
                 }
             }
             args.IsValid = false;
-            //int editIndex = MedicalServiceList.EditIndex;
-            //TextBox textBox = MedicalServiceList.Rows[editIndex].FindControl("EditGroupId") as TextBox;
-            //var inputStringData = textBox.Text;
-            //var inputIntData = Convert.ToInt64(inputStringData);
-            //var idList = from element in _dataContext.MedicalServiceGroups
-            //             select element.medicalServiceGroupId;
-            //foreach (var id in idList.ToArray())
-            //{
-            //    if (id == inputIntData)
-            //    {
-            //        args.IsValid = true;
-            //        return;
-            //    }
-            //}
-            //args.IsValid = false;
         }
 
         protected void UpdateButton_Click(object sender, EventArgs e)

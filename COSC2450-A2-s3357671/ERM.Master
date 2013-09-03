@@ -69,7 +69,7 @@
                     </li>
                     <li><a href="doctor.aspx">Doctor</a></li>
                     <li><a href="patient.aspx">Patient</a></li>
-                    <li><a href="visit.aspx">Visit</a></li>
+                    <li><a href="visits.aspx">Visit</a></li>
                     <li><a href="#">ICD</a>
                         <div class="subs">
                             <div>

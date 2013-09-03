@@ -102,13 +102,15 @@ namespace COSC2450_A2_s3357671
                          where element.labOrderId == id
                          select element;
 
-            if (labOrderDetails.Count() != 0 || visits.Count() != 0)
+            if (labOrderDetails.Count() != 0)
             {
                 _dataContext.LabOrderDetails.DeleteAllOnSubmit(labOrderDetails);
-                _dataContext.Visits.DeleteAllOnSubmit(visits);
-                _dataContext.SubmitChanges();
-                return;
             }
+            else if (visits.Count() != 0)
+            {
+                _dataContext.Visits.DeleteAllOnSubmit(visits);
+            }
+            _dataContext.SubmitChanges();
         }
 
         //ItemUpdated Event Control

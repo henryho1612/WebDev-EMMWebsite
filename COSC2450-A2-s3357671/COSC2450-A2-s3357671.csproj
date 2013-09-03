@@ -82,6 +82,7 @@
     <Content Include="Images\loader.gif" />
     <Content Include="index.aspx" />
     <Content Include="labOrder.aspx" />
+    <Content Include="labOrderDetail.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="medicalService.aspx" />
     <Content Include="medicalServiceGroup.aspx" />
@@ -109,6 +110,7 @@
     <Content Include="viewMedicalServiceGroup.aspx" />
     <Content Include="viewPatient.aspx" />
     <Content Include="viewPrescription.aspx" />
+    <Content Include="visits.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +181,13 @@
     </Compile>
     <Compile Include="labOrder.aspx.designer.cs">
       <DependentUpon>labOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="labOrderDetail.aspx.cs">
+      <DependentUpon>labOrderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="labOrderDetail.aspx.designer.cs">
+      <DependentUpon>labOrderDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -299,6 +308,13 @@
     </Compile>
     <Compile Include="viewPrescription.aspx.designer.cs">
       <DependentUpon>viewPrescription.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="visits.aspx.cs">
+      <DependentUpon>visits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="visits.aspx.designer.cs">
+      <DependentUpon>visits.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

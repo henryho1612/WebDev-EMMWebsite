@@ -32,9 +32,19 @@ namespace COSC2450_A2_s3357671
                            select element;
             if (elements.Count() != 0)
             {
+                var icdChapterArray = elements.ToArray();
+                for (var i = 0; i < icdChapterArray.Count(); i++)
+                {
+                    var visit = from element in _dataContext.Visits
+                                where element.icdId == icdChapterArray[i].icdId
+                                select element;
+                    if (visit.Count() != 0)
+                    {
+                        _dataContext.Visits.DeleteAllOnSubmit(visit);
+                    }
+                }
                 _dataContext.Icds.DeleteAllOnSubmit(elements);
                 _dataContext.SubmitChanges();
-                return;
             }
         }
 

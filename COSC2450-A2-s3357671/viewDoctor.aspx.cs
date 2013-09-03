@@ -63,21 +63,48 @@ namespace COSC2450_A2_s3357671
             var labOrders = from element in _dataContext.LabOrders
                             where element.doctorId == intId
                             select element;
-            var prescription = from element in _dataContext.Prescriptions
-                               where element.doctorId == intId
-                               select element;
-            var visit = from element in _dataContext.Visits
-                        where element.doctorId == intId
-                        select element;
+            var prescriptions = from element in _dataContext.Prescriptions
+                                where element.doctorId == intId
+                                select element;
+            var visits = from element in _dataContext.Visits
+                         where element.doctorId == intId
+                         select element;
 
-            if (labOrders.Count() != 0 || prescription.Count() != 0 || visit.Count() != 0)
+            if (labOrders.Count() != 0)
             {
-                _dataContext.Prescriptions.DeleteAllOnSubmit(prescription);
+                var labOrderArray = labOrders.ToArray();
+                for (var i = 0; i < labOrderArray.Count(); i++)
+                {
+                    var labOrderDetail = from element in _dataContext.LabOrderDetails
+                                         where element.labOrderId == labOrderArray[i].labOrderId
+                                         select element;
+                    if (labOrderDetail.Count() != 0)
+                    {
+                        _dataContext.LabOrderDetails.DeleteAllOnSubmit(labOrderDetail);
+                    }
+                }
                 _dataContext.LabOrders.DeleteAllOnSubmit(labOrders);
-                _dataContext.Visits.DeleteAllOnSubmit(visit);
-                _dataContext.SubmitChanges();
-                return;
             }
+            else if (prescriptions.Count() != 0)
+            {
+                var prescriptArray = prescriptions.ToArray();
+                for (var i = 0; i < prescriptArray.Count(); i++)
+                {
+                    var prescriptionDetail = from element in _dataContext.PrescriptionDetails
+                                             where element.prescriptionId == prescriptArray[i].prescriptionId
+                                             select element;
+                    if (prescriptionDetail.Count() != 0)
+                    {
+                        _dataContext.PrescriptionDetails.DeleteAllOnSubmit(prescriptionDetail);
+                    }
+                }
+                _dataContext.Prescriptions.DeleteAllOnSubmit(prescriptions);
+            }
+            else if (visits.Count() != 0)
+            {
+                _dataContext.Visits.DeleteAllOnSubmit(visits);
+            }
+            _dataContext.SubmitChanges();
         }
 
         //ItemUpdated Event Control

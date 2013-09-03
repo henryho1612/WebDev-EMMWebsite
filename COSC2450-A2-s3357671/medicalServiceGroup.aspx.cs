@@ -71,6 +71,17 @@ namespace COSC2450_A2_s3357671
                            select element;
             if (elements.Count() != 0)
             {
+                var medicalServicesArray = elements.ToArray();
+                for (var i = 0; i < medicalServicesArray.Count(); i++)
+                {
+                    var labOrderDetails = from element in _dataContext.LabOrderDetails
+                                          where medicalServicesArray[i].medicalServiceId == element.medicalServiceId
+                                          select element;
+                    if (labOrderDetails.Count() != 0)
+                    {
+                        _dataContext.LabOrderDetails.DeleteAllOnSubmit(labOrderDetails);
+                    }
+                }
                 _dataContext.MedicalServices.DeleteAllOnSubmit(elements);
                 _dataContext.SubmitChanges();
                 return;

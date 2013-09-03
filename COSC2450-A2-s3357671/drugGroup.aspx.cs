@@ -71,9 +71,19 @@ namespace COSC2450_A2_s3357671
                            select element;
             if (elements.Count() != 0)
             {
+                var drugArray = elements.ToArray();
+                for (var i = 0; i < drugArray.Count(); i++)
+                {
+                    var prescriptionDetail = from element in _dataContext.PrescriptionDetails
+                                             where element.drugId == drugArray[i].drugId
+                                             select element;
+                    if (prescriptionDetail.Count() != 0)
+                    {
+                        _dataContext.PrescriptionDetails.DeleteAllOnSubmit(prescriptionDetail);
+                    }
+                }
                 _dataContext.Drugs.DeleteAllOnSubmit(elements);
                 _dataContext.SubmitChanges();
-                return;
             }
         }
 

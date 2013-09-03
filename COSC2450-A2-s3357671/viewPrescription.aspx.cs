@@ -101,13 +101,14 @@ namespace COSC2450_A2_s3357671
                          where element.prescriptionId == id
                          select element;
 
-            if (prescriptionDetails.Count() != 0 || visits.Count() != 0)
-            {
+            if (prescriptionDetails.Count() != 0 )            {
                 _dataContext.PrescriptionDetails.DeleteAllOnSubmit(prescriptionDetails);
-                _dataContext.Visits.DeleteAllOnSubmit(visits);
-                _dataContext.SubmitChanges();
-                return;
             }
+            else if (visits.Count() != 0)
+            {
+                _dataContext.Visits.DeleteAllOnSubmit(visits);
+            }
+            _dataContext.SubmitChanges();
         }
 
         //ItemUpdated Event Control

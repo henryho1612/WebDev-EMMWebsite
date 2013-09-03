@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="COSC2450_A2_s3357671_DB" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=MICROSOFT\SQLEXPRESS;Initial Catalog=COSC2450_A2_s3357671_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="COSC2450_A2_s3357671_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=PHANHO-PC\SQLEXPRESS;Initial Catalog=COSC2450_A2_s3357671_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="COSC2450_A2_s3357671_DBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Doctor" Member="Doctors">
     <Type Name="Doctor">
       <Column Name="doctorId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -24,7 +24,7 @@
       <Column Name="prescriptionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="labOrderId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="dateVisit" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="outcome" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="outcome" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
       <Association Name="Doctor_Visit" Member="Doctor" ThisKey="doctorId" OtherKey="doctorId" Type="Doctor" IsForeignKey="true" />
       <Association Name="Hospital_Visit" Member="Hospital" ThisKey="hospitalId" OtherKey="hospitalId" Type="Hospital" IsForeignKey="true" />
       <Association Name="Icd_Visit" Member="Icd" ThisKey="icdId" OtherKey="icdId" Type="Icd" IsForeignKey="true" />

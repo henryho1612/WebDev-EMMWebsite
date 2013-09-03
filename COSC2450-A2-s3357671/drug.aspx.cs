@@ -33,22 +33,6 @@ namespace COSC2450_A2_s3357671
                     return;
                 }
             }
-            args.IsValid = false;
-            //int editIndex = MedicalServiceList.EditIndex;
-            //TextBox textBox = MedicalServiceList.Rows[editIndex].FindControl("EditGroupId") as TextBox;
-            //var inputStringData = textBox.Text;
-            //var inputIntData = Convert.ToInt64(inputStringData);
-            //var idList = from element in _dataContext.MedicalServiceGroups
-            //             select element.medicalServiceGroupId;
-            //foreach (var id in idList.ToArray())
-            //{
-            //    if (id == inputIntData)
-            //    {
-            //        args.IsValid = true;
-            //        return;
-            //    }
-            //}
-            //args.IsValid = false;
         }
 
         //Submit Add Form

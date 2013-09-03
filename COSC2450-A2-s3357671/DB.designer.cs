@@ -579,7 +579,7 @@ namespace COSC2450_A2_s3357671
 		
 		private System.DateTime _dateVisit;
 		
-		private decimal _outcome;
+		private string _outcome;
 		
 		private EntityRef<Doctor> _Doctor;
 		
@@ -613,7 +613,7 @@ namespace COSC2450_A2_s3357671
     partial void OnlabOrderIdChanged();
     partial void OndateVisitChanging(System.DateTime value);
     partial void OndateVisitChanged();
-    partial void OnoutcomeChanging(decimal value);
+    partial void OnoutcomeChanging(string value);
     partial void OnoutcomeChanged();
     #endregion
 		
@@ -812,8 +812,8 @@ namespace COSC2450_A2_s3357671
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_outcome", DbType="Decimal(18,2) NOT NULL")]
-		public decimal outcome
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_outcome", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
+		public string outcome
 		{
 			get
 			{
