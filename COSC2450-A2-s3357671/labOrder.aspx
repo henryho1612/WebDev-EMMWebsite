@@ -106,6 +106,9 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:GridView ID="LabOrderList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="labOrderId" DataSourceID="LabOrderLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="LabOrderList_PreRender">
+                    <EmptyDataTemplate>
+                        <label id="lblError">No data exists (404)</label>
+                    </EmptyDataTemplate>
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="labOrderId">

@@ -91,8 +91,8 @@
         </div>
     </div>
 
-    <%--List All Icd--%>
-    <h2 id="icdTitle" class="bodyTitle">List of Icds</h2>
+    <%--List All Prescriptions--%>
+    <h2 id="prescriptionTitle" class="bodyTitle">List of Prescriptions</h2>
     <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div style="width: 100%; height: 100%; background-color: lightgrey; text-align: center;">
@@ -106,6 +106,9 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:GridView ID="PrescriptionList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="prescriptionId" DataSourceID="PrescriptionLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="PrescriptionList_PreRender">
+                    <EmptyDataTemplate>
+                        <label id="lblError">No data exists (404)</label>
+                    </EmptyDataTemplate>
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="prescriptionId">

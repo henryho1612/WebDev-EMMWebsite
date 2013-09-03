@@ -106,7 +106,7 @@ namespace COSC2450_A2_s3357671
             var dataContext = new DBDataContext();
             var result = (from element in dataContext.Prescriptions
                           where element.Doctor.doctorName.ToLower().StartsWith(prefixText)
-                          select element.Doctor.doctorName.ToString());
+                          select element.Doctor.doctorName.ToString()).Distinct();
 
             return result.ToArray();
         }
