@@ -102,12 +102,12 @@
     <%--Search Patients Panel--%>
     <div id="searchPanel">
         <div id="searchBox">
-            <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="580px"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+            <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="50%"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
             <asp:AutoCompleteExtender runat="server" ID="PatientAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetPatients" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
         </div>
     </div>
 
-    <%--List All Drugs--%>
+    <%--List All Patients--%>
     <h2 id="patientTitle" class="bodyTitle">List of Patients</h2>
     <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
@@ -121,7 +121,7 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="PatientsList" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="patientId" DataSourceID="PatientsLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="PatientsList_PreRender" AllowPaging="True" AllowSorting="True">
+                <asp:GridView ID="PatientsList" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="patientId" DataSourceID="PatientsLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="PatientsList_PreRender" AllowPaging="True" AllowSorting="True" CssClass="listGridView">
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    
+
     <%--<link rel="stylesheet" href="~/bootstrap/css/bootstrap.css"  type="text/css"/>--%>
     <%--<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>--%>
     <%--<script src="~/boostrap/js/bootstrap.js"></script>--%>
@@ -39,106 +39,113 @@
 </head>
 <body>
     <form id="BodyForm" runat="server">
-        <div id="wrapBorder">
-        <div id="header">
-            <h1 id="pageTitle">Electronic Medical Record<br />System</h1>
-        </div>
+        <div id="wrapper">
+            <div id="header"></div>
+            <div class="menu">
+                <span>
+                    <ul id="nav">
+                        <li><a href="index.aspx">Home</a></li>
+                        <li><a href="#">Hospital</a>
+                            <div class="subs">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <h3>Hospital Manager</h3>
+                                            <ul>
+                                                <li><a href="hospital.aspx">Hospital</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h3>Service Manager</h3>
+                                            <ul>
+                                                <li><a href="medicalService.aspx">Medical Service</a></li>
+                                                <li><a href="medicalServiceGroup.aspx">Medical Service Group</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="doctor.aspx">Doctor</a></li>
+                        <li><a href="patient.aspx">Patient</a></li>
+                        <li><a href="visits.aspx">Visit</a></li>
+                        <li><a href="#">ICD</a>
+                            <div class="subs">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <h3>Details</h3>
+                                            <ul>
+                                                <li><a href="icd.aspx">ICD</a></li>
+                                                <li><a href="icdChapter.aspx">ICD Chapter</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="#">Prescription</a>
+                            <div class="subs">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <h3>Details</h3>
+                                            <ul>
+                                                <li><a href="prescription.aspx">Prescription</a></li>
+                                                <li><a href="prescriptionDetail.aspx">Prescription Detail</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="#">Lab Order</a>
+                            <div class="subs">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <h3>Details</h3>
+                                            <ul>
+                                                <li><a href="labOrder.aspx">Lab Order</a></li>
+                                                <li><a href="labOrderDetail.aspx">Lab Order Detail</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="#">Drug</a>
+                            <div class="subs">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <h3>Details</h3>
+                                            <ul>
+                                                <li><a href="drug.aspx">Drug</a></li>
+                                                <li><a href="drugGroup.aspx">Drug Group</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="report.aspx">Report</a></li>
+                    </ul>
+                </span>
+            </div>
 
-        <div class="menu">
-            <span>
-                <ul id="nav">
-                    <li><a href="index.aspx">Home</a></li>
-                    <li><a href="#">Hospital</a>
-                        <div class="subs">
-                            <div>
-                                <ul>
-                                    <li><h3>Hospital Manager</h3>
-                                        <ul>
-                                            <li><a href="hospital.aspx">Hospital</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><h3>Service Manager</h3>
-                                        <ul>
-                                            <li><a href="medicalService.aspx">Medical Service</a></li>
-                                            <li><a href="medicalServiceGroup.aspx">Medical Service Group</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="doctor.aspx">Doctor</a></li>
-                    <li><a href="patient.aspx">Patient</a></li>
-                    <li><a href="visits.aspx">Visit</a></li>
-                    <li><a href="#">ICD</a>
-                        <div class="subs">
-                            <div>
-                                <ul>
-                                    <li><h3>Details</h3>
-                                        <ul>
-                                            <li><a href="icd.aspx">ICD</a></li>
-                                            <li><a href="icdChapter.aspx">ICD Chapter</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#">Prescription</a>
-                        <div class="subs">
-                            <div>
-                                <ul>
-                                    <li><h3>Details</h3>
-                                        <ul>
-                                            <li><a href="prescription.aspx">Prescription</a></li>
-                                            <li><a href="prescriptionDetail.aspx">Prescription Detail</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#">Lab Order</a>
-                        <div class="subs">
-                            <div>
-                                <ul>
-                                    <li><h3>Details</h3>
-                                        <ul>
-                                            <li><a href="labOrder.aspx">Lab Order</a></li>
-                                            <li><a href="labOrderDetail.aspx">Lab Order Detail</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#">Drug</a>
-                        <div class="subs">
-                            <div>
-                                <ul>
-                                    <li><h3>Details</h3>
-                                        <ul>
-                                            <li><a href="drug.aspx">Drug</a></li>
-                                            <li><a href="drugGroup.aspx">Drug Group</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </span>
-        </div>
+            <div id="logOutPanel">
+                <asp:LinkButton ID="LogOut" runat="server" Text="Log out" OnClick="LogOut_Click" CssClass="logOutButton"/>
+            </div>
 
-        <div id="bodyPart">
-            <asp:LinkButton ID="LogOut" runat="server" Text="Log out" OnClick="LogOut_Click"/>
-            <asp:ContentPlaceHolder ID="BodyContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
-        </div>
+            <div id="bodyPart">
+                <asp:ContentPlaceHolder ID="BodyContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+            </div>
 
-        <div id="footer">
-            <h1>ERM - Write latter</h1>
+            <div id="footer">
+                <h1>ERM - Write latter</h1>
+            </div>
         </div>
-    </div>
     </form>
 </body>
 </html>

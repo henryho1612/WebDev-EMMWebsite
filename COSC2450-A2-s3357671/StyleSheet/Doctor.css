@@ -12,14 +12,15 @@
     margin: auto;
 }
 
-/*#displayPanel {
+#displayPanel {
     width:90%;
     height: 381px;
     margin-left:30px;
-}*/
+}
 
 #searchBox {
     padding-left:30px;
+    margin-bottom:30px;
 }
 
 #searchPanel {

@@ -131,10 +131,10 @@
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
-    <div id="listPanel">
+    <div class="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="PrescriptionDetailList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="prescriptionDetailId" DataSourceID="PresDetailLinqDataSource" ForeColor="#333333" GridLines="None" OnPreRender="PrescriptionDetailList_PreRender">
+                <asp:GridView ID="PrescriptionDetailList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="prescriptionDetailId" DataSourceID="PresDetailLinqDataSource" ForeColor="#333333" GridLines="None" OnPreRender="PrescriptionDetailList_PreRender" CssClass="listGridView">
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>
                     </EmptyDataTemplate>

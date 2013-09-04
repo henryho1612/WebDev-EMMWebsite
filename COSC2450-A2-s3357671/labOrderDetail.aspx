@@ -51,7 +51,7 @@
                 <table>
                     <tr class="addOptionLabel">
                         <th>
-                            <label id="lblLOrderId" class="addOption">Lab Order ID: </label>
+                            <label id="lblLOrderId" class="addOption">Lab Order: </label>
                         </th>
                         <td>
                             <asp:DropDownList ID="LabIdDropDown" runat="server" DataSourceID="LabIdLinqDataSource" DataTextField="labOrderId" DataValueField="labOrderId"></asp:DropDownList>
@@ -110,10 +110,10 @@
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
-    <div id="listPanel">
+    <div class="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="LabOrderDetailList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="labOrderDetailId" DataSourceID="LabOrderDetailLinqDataSource" ForeColor="#333333" GridLines="None" OnPreRender="LabOrderDetailList_PreRender">
+                <asp:GridView ID="LabOrderDetailList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="labOrderDetailId" DataSourceID="LabOrderDetailLinqDataSource" ForeColor="#333333" GridLines="None" OnPreRender="LabOrderDetailList_PreRender" CssClass="listGridView">
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>
                     </EmptyDataTemplate>
@@ -207,7 +207,7 @@
     <div id="noticePanel">
         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="medicalServiceId" DataSourceID="MedicalServiceLinqDataSource" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="medicalServiceId" DataSourceID="MedicalServiceLinqDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="medicalServiceId" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="medicalServiceId" />
@@ -232,7 +232,7 @@
         </asp:UpdatePanel>
         <asp:UpdatePanel ID="UpdatePanel4" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="labOrderId" DataSourceID="LabOrderLinqDataSource" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="labOrderId" DataSourceID="LabOrderLinqDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="labOrderId" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="labOrderId" />

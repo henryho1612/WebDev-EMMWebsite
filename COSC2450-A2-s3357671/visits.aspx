@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContentPlaceHolder" runat="server">
     <title>ERM System - Prescription Detail</title>
 
-    <link rel="stylesheet" href="/StyleSheet/Prescription.css" />
+    <link rel="stylesheet" href="/StyleSheet/Visit.css" />
     <%--Use for thread sleep on the server side--%>
     <script runat="server" type="text/javascript">
         protected void Button_Click(object sender, EventArgs e)
@@ -36,7 +36,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
 
-    <h2 id="addTitle" class="bodyTitle">Add A Visit</h2>
+    <%--<h2 id="addTitle" class="bodyTitle">Add A Visit</h2>
     <div id="addPanel">
         <asp:UpdateProgress ID="updateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
             <ProgressTemplate>
@@ -148,16 +148,16 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <asp:Label ID="LblNotice" runat="server" Text="Please log in as an admin to make changes" ForeColor="Red" Visible="false" />
-    </div>
+    </div>--%>
 
     <h2 id="searchTitle" class="bodyTitle">Search A Visit</h2>
     <div id="searchPanel">
-        <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="580px"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+        <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="50%"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
         <asp:AutoCompleteExtender runat="server" ID="VisitAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetVisit" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
     </div>
 
     <%--List All Medical Services--%>
-    <h2 id="medicalServiceTitle" class="bodyTitle">List of Medical Services</h2>
+    <h2 id="medicalServiceTitle" class="bodyTitle">List of Visit</h2>
     <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div style="width: 100%; height: 100%; background-color: lightgrey; text-align: center;">
@@ -170,7 +170,7 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="VisitList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="visitId" DataSourceID="VisitLinqDataSource" ForeColor="#333333" GridLines="None" OnPreRender="VisitList_PreRender">
+                <asp:GridView ID="VisitList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="visitId" DataSourceID="VisitLinqDataSource" ForeColor="#333333" GridLines="None" CssClass="listGridView">
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>
@@ -229,7 +229,7 @@
                                 <asp:Label ID="ViewIcd" runat="server" Text='<%# Bind("Icd.icdName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Prescription" SortExpression="prescriptionId">
+                        <%--<asp:TemplateField HeaderText="Prescription" SortExpression="prescriptionId">
                             <EditItemTemplate>
                                 <asp:TextBox ID="EditPrescription" runat="server" Text='<%# Bind("prescriptionId") %>'></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator12" ValidationGroup="update" ErrorMessage="Input should not be empty!!" ControlToValidate="EditPrescription" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -250,7 +250,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="ViewLabOrder" runat="server" Text='<%# Bind("labOrderId") %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         <asp:TemplateField HeaderText="Visited Date" SortExpression="dateVisit">
                             <EditItemTemplate>
                                 <asp:TextBox ID="EditDate" runat="server" Text='<%# Bind("dateVisit") %>' Enabled="false"></asp:TextBox><asp:ImageButton ID="CalendarButton1" runat="server" ImageUrl="~/Images/calendar.ico" Width="25px" Height="25px" ImageAlign="AbsMiddle" /><span class="requiredField">*</span>
@@ -272,7 +272,7 @@
                                 <asp:Label ID="ViewOutcome" runat="server" Text='<%# Bind("outcome") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="false" ItemStyle-Width="20px">
+                        <%--<asp:TemplateField ShowHeader="false" ItemStyle-Width="20px">
                             <EditItemTemplate>
                                 <asp:LinkButton ID="UpdateBtn" runat="server" CausesValidation="True" Text="Update" ValidationGroup="update" OnClick="UpdateBtn_Click"></asp:LinkButton>
                             </EditItemTemplate>
@@ -288,7 +288,7 @@
                             <ItemTemplate>
                                 <asp:LinkButton ID="DeleteBtn" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" OnClick="Button_Click" OnClientClick="return confirm('Do you want to delete?');"></asp:LinkButton>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

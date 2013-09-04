@@ -1,7 +1,14 @@
-﻿#wrapBorder {
-    border-color: black;
-    width: 1250px;
-    height: auto;
+﻿body 
+{
+    color: #FFFFFF;
+    font-size: medium;
+    font-family:'Times New Roman';
+}
+
+#wrapper 
+{
+    width: 1920px;
+    height: 1080px;
     margin: auto;
 }
 
@@ -10,24 +17,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 200px;
+    height: 400px;
     display: block;
-}
-
-#pageTitle {
-    color: black;
-    width: 100%;
-    height: 170px;
-    font-size: 70px;
-    /*background-color:lightgoldenrodyellow;*/
-    font-weight: bold;
-    padding-left: 20px;
 }
 
 .menu {
     background-color:#d0e6f5;
     text-align:center;
-    font-size:20px;
+    font-size:xx-large;
     width:100%;
 }
 .menu > span {
@@ -122,6 +119,60 @@
     color:#fff;
 }
 
+#logOutPanel {
+    width: auto;
+    height: 40px;
+    margin-top:10px;
+    margin-bottom:0px;
+}
+
+.logOutButton {
+	-moz-box-shadow:inset 0px 1px 30px 0px #cae3fc;
+	-webkit-box-shadow:inset 0px 1px 30px 0px #cae3fc;
+	box-shadow:inset 0px 1px 30px 0px #cae3fc;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #4197ee) );
+	background:-moz-linear-gradient( center top, #79bbff 5%, #4197ee 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#4197ee');
+	background-color:#79bbff;
+	-webkit-border-top-left-radius:14px;
+	-moz-border-radius-topleft:14px;
+	border-top-left-radius:14px;
+	-webkit-border-top-right-radius:14px;
+	-moz-border-radius-topright:14px;
+	border-top-right-radius:14px;
+	-webkit-border-bottom-right-radius:14px;
+	-moz-border-radius-bottomright:14px;
+	border-bottom-right-radius:14px;
+	-webkit-border-bottom-left-radius:14px;
+	-moz-border-radius-bottomleft:14px;
+	border-bottom-left-radius:14px;
+	text-indent:0;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:29px;
+	line-height:29px;
+	width:117px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #287ace;
+    float:left;
+}
+.logOutButton:hover {
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4197ee), color-stop(1, #79bbff) );
+    background: -moz-linear-gradient( center top, #4197ee 5%, #79bbff 100% );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4197ee', endColorstr='#79bbff');
+    background-color: #4197ee;
+}
+
+.logOutButton:active {
+	position:relative;
+	top:1px;
+}
+
 #bodyPart {
     width: 100%;
     height: auto;
@@ -147,6 +198,10 @@
 .requiredField {
     color: red;
     font-weight:bold;
+}
+
+.search {
+    margin:auto;
 }
 
 #footer {

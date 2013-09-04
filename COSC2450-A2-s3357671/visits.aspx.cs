@@ -249,41 +249,41 @@ namespace COSC2450_A2_s3357671
             args.IsValid = false;
         }
 
-        //Validate input service group name
-        //Add Option - Validate existence of group naem
-        protected void PrescriptionExistenceCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            var inputValue = args.Value.ToString();
-            var prescriptions = from element in _dataContext.Prescriptions
-                                select element.prescriptionId.ToString().ToLower();
-            foreach (var prescription in prescriptions.ToArray())
-            {
-                if (prescription.ToString().ToLower().Equals(inputValue.ToLower()))
-                {
-                    args.IsValid = true;
-                    return;
-                }
-            }
-            args.IsValid = false;
-        }
+        ////Validate input service group name
+        ////Add Option - Validate existence of group naem
+        //protected void PrescriptionExistenceCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        //{
+        //    var inputValue = args.Value.ToString();
+        //    var prescriptions = from element in _dataContext.Prescriptions
+        //                        select element.prescriptionId.ToString().ToLower();
+        //    foreach (var prescription in prescriptions.ToArray())
+        //    {
+        //        if (prescription.ToString().ToLower().Equals(inputValue.ToLower()))
+        //        {
+        //            args.IsValid = true;
+        //            return;
+        //        }
+        //    }
+        //    args.IsValid = false;
+        //}
 
-        //Validate input service group name
-        //Add Option - Validate existence of group naem
-        protected void LabOrderExistenceCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            var inputValue = args.Value.ToString();
-            var labOrders = from element in _dataContext.LabOrders
-                            select element.labOrderId.ToString().ToLower();
-            foreach (var labOrder in labOrders.ToArray())
-            {
-                if (labOrder.ToString().ToLower().Equals(inputValue.ToLower()))
-                {
-                    args.IsValid = true;
-                    return;
-                }
-            }
-            args.IsValid = false;
-        }
+        ////Validate input service group name
+        ////Add Option - Validate existence of group naem
+        //protected void LabOrderExistenceCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        //{
+        //    var inputValue = args.Value.ToString();
+        //    var labOrders = from element in _dataContext.LabOrders
+        //                    select element.labOrderId.ToString().ToLower();
+        //    foreach (var labOrder in labOrders.ToArray())
+        //    {
+        //        if (labOrder.ToString().ToLower().Equals(inputValue.ToLower()))
+        //        {
+        //            args.IsValid = true;
+        //            return;
+        //        }
+        //    }
+        //    args.IsValid = false;
+        //}
 
         //Validate input service group name
         //Add Option - Validate existence of group naem
@@ -302,38 +302,38 @@ namespace COSC2450_A2_s3357671
             args.IsValid = false;
         }
 
-        protected void AddVisitButton_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            String btnId = btn.ID;
+        //protected void AddVisitButton_Click(object sender, EventArgs e)
+        //{
+        //    Button btn = (Button)sender;
+        //    String btnId = btn.ID;
 
-            if (btnId.Equals("AddVisitButton"))
-            {
-                if (IsValid)
-                {
-                    System.Threading.Thread.Sleep(3000);
-                    var hospital = GetId(HospitalTxt.Text, "hospital")[0];
-                    var doctor = GetId(DoctorTxt.Text, "doctor")[0];
-                    var patient = GetId(PatientTxt.Text, "patient")[0];
-                    var icd = GetId(ICDTxt.Text, "icd")[0];
-                    var prescription = GetId(PrescriptionTxt.Text, "prescription")[0];
-                    var labOrder = GetId(LabOrderTxt.Text, "laborder")[0];
-                    var date = Convert.ToDateTime(visitedDate.Text);
-                    var outcome = OutcomeTxt.Text;
+        //    if (btnId.Equals("AddVisitButton"))
+        //    {
+        //        if (IsValid)
+        //        {
+        //            System.Threading.Thread.Sleep(3000);
+        //            var hospital = GetId(HospitalTxt.Text, "hospital")[0];
+        //            var doctor = GetId(DoctorTxt.Text, "doctor")[0];
+        //            var patient = GetId(PatientTxt.Text, "patient")[0];
+        //            var icd = GetId(ICDTxt.Text, "icd")[0];
+        //            var prescription = GetId(PrescriptionTxt.Text, "prescription")[0];
+        //            var labOrder = GetId(LabOrderTxt.Text, "laborder")[0];
+        //            var date = Convert.ToDateTime(visitedDate.Text);
+        //            var outcome = OutcomeTxt.Text;
 
-                    var visit = new Visit() { hospitalId = hospital, doctorId = doctor, patientId = patient, icdId = icd, prescriptionId = prescription, labOrderId = labOrder, dateVisit = date, outcome = outcome };
-                    _dataContext.Visits.InsertOnSubmit(visit);
-                    _dataContext.SubmitChanges();
-                    VisitList.DataBind();
+        //            var visit = new Visit() { hospitalId = hospital, doctorId = doctor, patientId = patient, icdId = icd, prescriptionId = prescription, labOrderId = labOrder, dateVisit = date, outcome = outcome };
+        //            _dataContext.Visits.InsertOnSubmit(visit);
+        //            _dataContext.SubmitChanges();
+        //            VisitList.DataBind();
 
-                    ResetInputField();
-                }
-            }
-            else if (btnId.Equals("ResetVisitButton"))
-            {
-                ResetInputField();
-            }
-        }
+        //            ResetInputField();
+        //        }
+        //    }
+        //    else if (btnId.Equals("ResetVisitButton"))
+        //    {
+        //        ResetInputField();
+        //    }
+        //}
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
@@ -369,30 +369,30 @@ namespace COSC2450_A2_s3357671
             }
         }
 
-        protected void ResetInputField()
-        {
-            HospitalTxt.Text = "";
-            DoctorTxt.Text = "";
-            PatientTxt.Text = "";
-            ICDTxt.Text = "";
-            PrescriptionTxt.Text = "";
-            LabOrderTxt.Text = "";
-            visitedDate.Text = "";
-            OutcomeTxt.Text = "";
-        }
+        //protected void ResetInputField()
+        //{
+        //    HospitalTxt.Text = "";
+        //    DoctorTxt.Text = "";
+        //    PatientTxt.Text = "";
+        //    ICDTxt.Text = "";
+        //    PrescriptionTxt.Text = "";
+        //    LabOrderTxt.Text = "";
+        //    visitedDate.Text = "";
+        //    OutcomeTxt.Text = "";
+        //}
 
-        protected void VisitList_PreRender(object sender, EventArgs e)
-        {
-            if (Roles.IsUserInRole("Users"))
-            {
-                for (var i = 0; i < VisitList.Rows.Count; i++)
-                {
-                    VisitList.Rows[i].FindControl("DeleteBtn").Visible = false;
-                    VisitList.Rows[i].FindControl("EditBtn").Visible = false;
-                }
-                UpdatePanel2.Visible = false;
-                LblNotice.Visible = true;
-            }
-        }
+        //protected void VisitList_PreRender(object sender, EventArgs e)
+        //{
+        //    if (Roles.IsUserInRole("Users"))
+        //    {
+        //        for (var i = 0; i < VisitList.Rows.Count; i++)
+        //        {
+        //            VisitList.Rows[i].FindControl("DeleteBtn").Visible = false;
+        //            VisitList.Rows[i].FindControl("EditBtn").Visible = false;
+        //        }
+        //        UpdatePanel2.Visible = false;
+        //        LblNotice.Visible = true;
+        //    }
+        //}
     }
 }

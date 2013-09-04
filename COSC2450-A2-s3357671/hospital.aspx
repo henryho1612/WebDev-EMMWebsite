@@ -90,7 +90,7 @@
     <h2 id="searchTitle" class="bodyTitle">Search A Hospital</h2>
     <%--Search Hospital Panel--%>
     <div id="searchPanel">
-        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+        <asp:TextBox ID="SearchTextBox" runat="server" Width="50%" CssClass="search"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search"/>
         <asp:AutoCompleteExtender runat="server" ID="HospitalAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetHospital" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
     </div>
     <h2 id="doctorTitle" class="bodyTitle">List of Hospital</h2>

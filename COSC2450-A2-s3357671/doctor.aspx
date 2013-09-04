@@ -111,7 +111,7 @@
     <%--Search Doctors Panel--%>
     <div id="searchPanel">
         <div id="searchBox">
-            <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="580px"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+            <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="50%"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
             <asp:AutoCompleteExtender runat="server" ID="DoctorAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetDoctors" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
         </div>
     </div>
@@ -130,7 +130,7 @@
     <div id="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="DoctorsList" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="doctorId" DataSourceID="DoctorsLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="DoctorsList_PreRender" AllowPaging="True" AllowSorting="True">
+                <asp:GridView ID="DoctorsList" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="doctorId" DataSourceID="DoctorsLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="DoctorsList_PreRender" AllowPaging="True" AllowSorting="True" CssClass="listGridView">
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>
                         <label id="lblError">No data exists (404)</label>

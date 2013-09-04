@@ -102,7 +102,7 @@
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
-    <div id="listPanel">
+    <div class="listPanel">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:GridView ID="PrescriptionList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="prescriptionId" DataSourceID="PrescriptionLinqDataSource" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView_RowDeleting" OnPreRender="PrescriptionList_PreRender">

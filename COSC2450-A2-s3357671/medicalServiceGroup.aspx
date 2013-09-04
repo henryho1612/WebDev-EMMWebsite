@@ -69,9 +69,10 @@
     <h2 id="searchTitle" class="bodyTitle">Search A Medical Service Group</h2>
     <%--Search Medical Service Group Panel--%>
     <div id="searchPanel">
-        <asp:TextBox ID="SearchTextBox" runat="server"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+        <asp:TextBox ID="SearchTextBox" runat="server" Width="50%"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
         <asp:AutoCompleteExtender runat="server" ID="MSGroupAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetMedicalServiceGroup" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
     </div>
+
     <h2 id="msGroupTitle" class="bodyTitle">List of Medical Service Groups</h2>
     <%--List All Medical Service Groups--%>
     <asp:UpdateProgress ID="updateProgress" runat="server" AssociatedUpdatePanelID="UpdatePanel1">

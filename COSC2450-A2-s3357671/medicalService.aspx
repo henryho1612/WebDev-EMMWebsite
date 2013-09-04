@@ -96,7 +96,7 @@
     <%--Search Medical Service Panel--%>
     <div id="searchPanel">
         <div id="searchBox">
-            <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="580px"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
+            <asp:TextBox ID="SearchTextBox" runat="server" Height="16px" Width="50%"></asp:TextBox><asp:Button ID="SearchBtn" runat="server" Text="Search" />
             <asp:AutoCompleteExtender runat="server" ID="MSAutoCompleteExtender" TargetControlID="SearchTextBox" ServiceMethod="GetMedicalService" MinimumPrefixLength="1" CompletionInterval="10" EnableCaching="true" CompletionSetCount="10" Enabled="true"></asp:AutoCompleteExtender>
         </div>
 

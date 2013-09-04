@@ -573,9 +573,9 @@ namespace COSC2450_A2_s3357671
 		
 		private long _icdId;
 		
-		private long _prescriptionId;
+		private System.Nullable<long> _prescriptionId;
 		
-		private long _labOrderId;
+		private System.Nullable<long> _labOrderId;
 		
 		private System.DateTime _dateVisit;
 		
@@ -607,9 +607,9 @@ namespace COSC2450_A2_s3357671
     partial void OnpatientIdChanged();
     partial void OnicdIdChanging(long value);
     partial void OnicdIdChanged();
-    partial void OnprescriptionIdChanging(long value);
+    partial void OnprescriptionIdChanging(System.Nullable<long> value);
     partial void OnprescriptionIdChanged();
-    partial void OnlabOrderIdChanging(long value);
+    partial void OnlabOrderIdChanging(System.Nullable<long> value);
     partial void OnlabOrderIdChanged();
     partial void OndateVisitChanging(System.DateTime value);
     partial void OndateVisitChanged();
@@ -744,8 +744,8 @@ namespace COSC2450_A2_s3357671
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prescriptionId", DbType="BigInt NOT NULL")]
-		public long prescriptionId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prescriptionId", DbType="BigInt")]
+		public System.Nullable<long> prescriptionId
 		{
 			get
 			{
@@ -768,8 +768,8 @@ namespace COSC2450_A2_s3357671
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_labOrderId", DbType="BigInt NOT NULL")]
-		public long labOrderId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_labOrderId", DbType="BigInt")]
+		public System.Nullable<long> labOrderId
 		{
 			get
 			{
@@ -812,7 +812,7 @@ namespace COSC2450_A2_s3357671
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_outcome", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_outcome", DbType="VarChar(25)")]
 		public string outcome
 		{
 			get
@@ -961,7 +961,7 @@ namespace COSC2450_A2_s3357671
 					}
 					else
 					{
-						this._labOrderId = default(long);
+						this._labOrderId = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("LabOrder");
 				}
@@ -1029,7 +1029,7 @@ namespace COSC2450_A2_s3357671
 					}
 					else
 					{
-						this._prescriptionId = default(long);
+						this._prescriptionId = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("Prescription");
 				}

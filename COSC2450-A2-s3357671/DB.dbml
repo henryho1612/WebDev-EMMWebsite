@@ -21,10 +21,10 @@
       <Column Name="doctorId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="patientId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="icdId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="prescriptionId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="labOrderId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="prescriptionId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="labOrderId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="dateVisit" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="outcome" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="outcome" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
       <Association Name="Doctor_Visit" Member="Doctor" ThisKey="doctorId" OtherKey="doctorId" Type="Doctor" IsForeignKey="true" />
       <Association Name="Hospital_Visit" Member="Hospital" ThisKey="hospitalId" OtherKey="hospitalId" Type="Hospital" IsForeignKey="true" />
       <Association Name="Icd_Visit" Member="Icd" ThisKey="icdId" OtherKey="icdId" Type="Icd" IsForeignKey="true" />
